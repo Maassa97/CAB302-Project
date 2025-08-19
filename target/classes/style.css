@@ -3,7 +3,7 @@ and the text color to white */
 .button {
     -fx-background-color: #121212;
     -fx-text-fill: white;
-    -fx-border-color: white;
+    -fx-border-color: blue;
     -fx-border-radius: 5;
 }
 
