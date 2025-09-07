@@ -6,21 +6,24 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import atlantafx.base.theme.Dracula;
+
 
 public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Application.setUserAgentStylesheet(new Dracula().getUserAgentStylesheet());
         FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+                new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 420, 520);
+        stage.setTitle("Sign in");
 
         scene.getStylesheets().add(
                 HelloApplication.class.getResource("/style.css").toExternalForm()
         );
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Cal-Calc!");
         stage.setScene(scene);
         stage.show();
     }
