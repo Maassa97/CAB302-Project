@@ -3,3 +3,17 @@
 /workspace.xml
 # Environment-dependent path to Maven home directory
 /mavenHomeManager.xml
+
+# Maven
+target/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+
+# Logs
+*.log

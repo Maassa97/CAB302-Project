@@ -1,7 +1,12 @@
 package com.cab302.javafxreadingdemo;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import java.io.IOException;
+
 
 public class LoginController {
     @FXML private TextField emailField;
@@ -33,8 +38,20 @@ public class LoginController {
 
     @FXML
     private void onSignUp() {
-        errorLabel.setText("Sign up clicked (stub).");
+        try {
+            FXMLLoader loader =
+                    new FXMLLoader(HelloApplication.class.getResource("signup-view.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) signInButton.getScene().getWindow();
+            stage.getScene().setRoot(root);
+            errorLabel.setText(""); // clear any prior error
+        } catch (IOException e) {
+            errorLabel.setText("Could not open sign-up screen.");
+            e.printStackTrace();
+        }
     }
+
+
 
 
     private void showError(String msg) {
