@@ -34,7 +34,25 @@ public class LoginController {
         signInButton.setDisable(true);
         signInButton.setText("Signing in…");
 
+        try {
+            FXMLLoader loader =
+                    new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+            Parent root = loader.load();
+
+
+            Stage stage = (Stage) signInButton.getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Could not open the home screen.");
+            signInButton.setDisable(false);
+            signInButton.setText("Sign In");
+        }
+
     }
+
+
+
 
     @FXML
     private void onSignUp() {
