@@ -101,7 +101,7 @@
 
                        </children>
                    </HBox>
-                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="MenuButton" GridPane.columnIndex="1">
+                  <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Menu" GridPane.columnIndex="1">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#onLogout" text="Log out" />
                     </items>
