@@ -1,0 +1,84 @@
+package com.cab302.javafxreadingdemo;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.util.Objects;
+
+public class SignupController {
+
+    @FXML private TextField nameField;
+    @FXML private TextField emailField;
+    @FXML private PasswordField passwordField;
+    @FXML private PasswordField confirmField;
+    @FXML private Label errorLabel;
+    @FXML private Button createButton;
+
+    @FXML
+    private void onCreateAccount() {
+        String name = safe(nameField.getText());
+        String email = safe(emailField.getText());
+        String pass = safe(passwordField.getText());
+        String confirm = safe(confirmField.getText());
+
+        if (name.isEmpty() || email.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
+            showError("Please fill out all fields.");
+            return;
+        }
+        if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
+            showError("That email doesn't look right.");
+            return;
+        }
+        if (pass.length() < 8) {
+            showError("Password must be at least 8 characters.");
+            return;
+        }
+        if (!pass.equals(confirm)) {
+            showError("Passwords do not match.");
+            return;
+        }
+
+        // Stub success:
+        showError(""); // clear
+        createButton.setDisable(true);
+        createButton.setText("Creating account…");
+
+        // TODO: add backend service
+        // temp --> go back home
+        try {
+            navigate("login-view.fxml");
+        } catch (IOException e) {
+            showError("Could not open login screen.");
+            createButton.setDisable(false);
+            createButton.setText("Create account");
+        }
+    }
+
+    @FXML
+    private void onBackToSignIn() {
+        try {
+            navigate("login-view.fxml");
+        } catch (IOException e) {
+            showError("Could not open login screen.");
+        }
+    }
+
+    private void navigate(String fxmlName) throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                Objects.requireNonNull(HelloApplication.class.getResource(fxmlName),
+                        fxmlName + " not found. Is it under resources/com/cab302/javafxreadingdemo/?")
+        );
+        Parent root = loader.load();
+        Stage stage = (Stage) createButton.getScene().getWindow();
+        stage.getScene().setRoot(root);
+    }
+
+    private void showError(String msg) {
+        errorLabel.setText(msg == null ? "" : msg);
+    }
+
+    private String safe(String s) { return s == null ? "" : s.trim(); }
+}
