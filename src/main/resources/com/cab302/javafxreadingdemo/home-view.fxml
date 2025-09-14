@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.cab302.javafxreadingdemo.controller.HomeController"
+           alignment="CENTER"
+           prefWidth="600" prefHeight="400">
+
+    <VBox alignment="CENTER" spacing="20">
+        <Label text="Welcome to the Home Page!" style="-fx-font-size: 20;"/>
+        <Button text="Logout" onAction="#onLogout"/>
+        <HBox spacing="10" alignment="CENTER">
+            <ToggleButton fx:id="lightBtn" text="Light"/>
+            <ToggleButton fx:id="darkBtn" text="Dark"/>
+        </HBox>
+    </VBox>
+</StackPane>
