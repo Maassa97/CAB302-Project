@@ -59,6 +59,10 @@ public class HomeController {
         });
     }
 
+    @FXML
+    private void test() {
+        System.out.println("ts pmo icl");
+    }
 
 }
 
