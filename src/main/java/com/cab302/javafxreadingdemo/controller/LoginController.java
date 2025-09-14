@@ -1,6 +1,10 @@
 package com.cab302.javafxreadingdemo.controller;
 
 import com.cab302.javafxreadingdemo.HelloApplication;
+import com.cab302.javafxreadingdemo.model.IUserDAO;
+import com.cab302.javafxreadingdemo.model.SqliteUserDAO;
+import com.cab302.javafxreadingdemo.model.User;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,7 +34,17 @@ public class LoginController {
             return;
         }
 
-        //dummy login success
+        // --- Check DB for user ---
+        IUserDAO userDAO = new SqliteUserDAO();
+        User user = userDAO.getUserByEmail(email);
+
+        // --- Verify password with BCrypt ---
+        if (user == null || !org.mindrot.jbcrypt.BCrypt.checkpw(pass, user.getPassword())) {
+            showError("Invalid email or password.");
+            return;
+        }
+
+        // login
         errorLabel.setText("");
         signInButton.setDisable(true);
         signInButton.setText("Signing in…");
@@ -39,8 +53,6 @@ public class LoginController {
             FXMLLoader loader =
                     new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
             Parent root = loader.load();
-
-
             Stage stage = (Stage) signInButton.getScene().getWindow();
             stage.getScene().setRoot(root);
         } catch (IOException e) {
@@ -51,8 +63,6 @@ public class LoginController {
         }
 
     }
-
-
 
 
     @FXML
@@ -69,8 +79,6 @@ public class LoginController {
             e.printStackTrace();
         }
     }
-
-
 
 
     private void showError(String msg) {

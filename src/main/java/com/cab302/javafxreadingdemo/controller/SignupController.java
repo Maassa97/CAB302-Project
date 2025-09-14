@@ -55,9 +55,11 @@ public class SignupController {
             return;
         }
 
-        // --- save to DB ---
-        User newUser = new User(name, email, pass);
+        // Hash password before saving
+        String hashedPassword = org.mindrot.jbcrypt.BCrypt.hashpw(pass, org.mindrot.jbcrypt.BCrypt.gensalt());
+        User newUser = new User(name, email, hashedPassword);
         userDAO.addUser(newUser);
+
 
         // clear error, disable button
         showError("");

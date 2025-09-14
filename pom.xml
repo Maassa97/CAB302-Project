@@ -32,11 +32,17 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- SQLite implementation implementation -->
+        <!-- SQLite implementation -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.49.1.0</version>
+        </dependency>
+        <!-- jBCrypt implementation -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
         </dependency>
 
         <dependency>
