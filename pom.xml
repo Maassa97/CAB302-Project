@@ -32,6 +32,18 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- CalendarFX implementation-->
+        <dependency>
+            <groupId>com.calendarfx</groupId>
+            <artifactId>view</artifactId>
+            <version>11.12.6</version>
+        </dependency>
+        <!-- ControlsFX required in CalendarFX implementation -->
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.2.2</version>
+        </dependency>
         <!-- SQLite implementation -->
         <dependency>
             <groupId>org.xerial</groupId>
@@ -44,6 +56,7 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>

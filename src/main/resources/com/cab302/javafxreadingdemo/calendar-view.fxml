@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.calendarfx.view.CalendarView?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.cab302.javafxreadingdemo.controller.CalendarController"
+           prefWidth="800" prefHeight="600">
+    <CalendarView fx:id="calendarView" />
+</StackPane>

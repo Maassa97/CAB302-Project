@@ -74,6 +74,20 @@ public class HomeController {
         });
     }
 
+    // Handles calendar opening
+    @FXML
+    private void onOpenCalendar() {
+        try {
+            Parent calendarRoot = FXMLLoader.load(
+                    HelloApplication.class.getResource("calendar-view.fxml")
+            );
+            Scene scene = rootStack.getScene();
+            scene.setRoot(calendarRoot);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 
