@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.cab302.javafxreadingdemo.controller.SignupController"
+           prefWidth="420" prefHeight="520"
+           styleClass="root">
 
-</AnchorPane>
+    <children>
+        <BorderPane maxWidth="360" maxHeight="460" BorderPane.alignment="CENTER">
+            <center>
+                <VBox spacing="16" alignment="CENTER" styleClass="login-card">
+                    <children>
+                        <Label text="Create an Account" styleClass="login-title"/>
+
+                        <GridPane hgap="12" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" minWidth="90"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="Name"/>
+                            <TextField fx:id="nameField" promptText="John Doe" GridPane.columnIndex="1"/>
+
+                            <Label text="Email" GridPane.rowIndex="1"/>
+                            <TextField fx:id="emailField" promptText="you@example.com" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                            <Label text="Password" GridPane.rowIndex="2"/>
+                            <PasswordField fx:id="passwordField" promptText="••••••••" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                            <Label text="Confirm" GridPane.rowIndex="3"/>
+                            <PasswordField fx:id="confirmField" promptText="••••••••" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        </GridPane>
+
+                        <Button fx:id="createButton" text="Create Account"
+                                onAction="#onCreateAccount"
+                                maxWidth="Infinity"
+                                styleClass="primary-btn"/>
+
+                        <Label fx:id="errorLabel" text="" styleClass="error-text"/>
+
+                        <Hyperlink text="Back to Sign in" onAction="#onBackToSignIn" styleClass="accent-link"/>
+                    </children>
+                    <padding>
+                        <Insets top="28" right="28" bottom="28" left="28"/>
+                    </padding>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>
