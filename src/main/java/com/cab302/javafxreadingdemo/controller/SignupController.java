@@ -1,4 +1,7 @@
-package com.cab302.javafxreadingdemo;
+package com.cab302.javafxreadingdemo.controller;
+
+import com.cab302.javafxreadingdemo.HelloApplication;
+import com.cab302.javafxreadingdemo.model.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +11,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Controller for the Sign-up screen.
+ * Handles form validation and persistence of a new user in the database.
+ */
 public class SignupController {
 
     @FXML private TextField nameField;
@@ -17,6 +24,8 @@ public class SignupController {
     @FXML private Label errorLabel;
     @FXML private Button createButton;
 
+    private final IUserDAO userDAO = new SqliteUserDAO();
+
     @FXML
     private void onCreateAccount() {
         String name = safe(nameField.getText());
@@ -24,6 +33,7 @@ public class SignupController {
         String pass = safe(passwordField.getText());
         String confirm = safe(confirmField.getText());
 
+        // --- validation ---
         if (name.isEmpty() || email.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
             showError("Please fill out all fields.");
             return;
@@ -40,20 +50,27 @@ public class SignupController {
             showError("Passwords do not match.");
             return;
         }
+        if (userDAO.getUserByEmail(email) != null) {
+            showError("That email is already registered.");
+            return;
+        }
 
-        // Stub success:
-        showError(""); // clear
+        // --- save to DB ---
+        User newUser = new User(name, email, pass);
+        userDAO.addUser(newUser);
+
+        // clear error, disable button
+        showError("");
         createButton.setDisable(true);
-        createButton.setText("Creating account…");
+        createButton.setText("Account created!");
 
-        // TODO: add backend service
-        // temp --> go back home
+        // navigate back to login
         try {
             navigate("login-view.fxml");
         } catch (IOException e) {
             showError("Could not open login screen.");
             createButton.setDisable(false);
-            createButton.setText("Create account");
+            createButton.setText("Create Account");
         }
     }
 
@@ -69,7 +86,7 @@ public class SignupController {
     private void navigate(String fxmlName) throws IOException {
         FXMLLoader loader = new FXMLLoader(
                 Objects.requireNonNull(HelloApplication.class.getResource(fxmlName),
-                        fxmlName + " not found. Is it under resources/com/cab302/javafxreadingdemo/?")
+                        fxmlName + " not found under resources/com/cab302/javafxreadingdemo/")
         );
         Parent root = loader.load();
         Stage stage = (Stage) createButton.getScene().getWindow();
@@ -80,5 +97,7 @@ public class SignupController {
         errorLabel.setText(msg == null ? "" : msg);
     }
 
-    private String safe(String s) { return s == null ? "" : s.trim(); }
+    private String safe(String s) {
+        return s == null ? "" : s.trim();
+    }
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <StackPane xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.cab302.javafxreadingdemo.LoginController"
+           fx:controller="com.cab302.javafxreadingdemo.controller.LoginController"
            prefWidth="420" prefHeight="520"
            styleClass="root">
     <children>

@@ -1,5 +1,6 @@
-package com.cab302.javafxreadingdemo;
+package com.cab302.javafxreadingdemo.controller;
 
+import com.cab302.javafxreadingdemo.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
