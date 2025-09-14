@@ -24,7 +24,7 @@ public class SqliteConnection {
             // Create or open local SQLite DB file
             instance = DriverManager.getConnection("jdbc:sqlite:users.db");
         } catch (ClassNotFoundException e) {
-            System.err.println("SQLite JDBC driver not found. Did you add it to pom.xml?");
+            System.err.println("SQLite JDBC driver not found.");
             e.printStackTrace();
         } catch (SQLException ex) {
             ex.printStackTrace();

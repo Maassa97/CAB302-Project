@@ -26,9 +26,9 @@ public class SqliteUserDAO implements IUserDAO {
     private static final String GET_ALL_USERS =
             "SELECT * FROM users";
 
-    /**
-     * Constructor ensures the table exists when DAO is first used.
-     */
+
+    //Constructor ensures the table exists when DAO is first used.
+
     public SqliteUserDAO() {
         try (Statement stmt = SqliteConnection.getInstance().createStatement()) {
             stmt.execute(CREATE_USERS_TABLE);
@@ -37,9 +37,9 @@ public class SqliteUserDAO implements IUserDAO {
         }
     }
 
-    /**
-     * Insert a new user into the database.
-     */
+
+    //Insert a new user into the database.
+
     @Override
     public void addUser(User user) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(ADD_USER)) {
@@ -76,9 +76,8 @@ public class SqliteUserDAO implements IUserDAO {
         return null; // not found
     }
 
-    /**
-     * Retrieve all users in the database.
-     */
+    //Retrieve all users in the database.
+
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
