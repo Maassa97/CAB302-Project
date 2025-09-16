@@ -13,7 +13,17 @@ import javafx.scene.control.ToggleGroup;
 import atlantafx.base.theme.Dracula;
 //import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.CupertinoLight;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.application.Platform;
+import java.util.concurrent.CompletableFuture;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
+import java.io.InputStream;
+import java.util.Properties;
 
+import com.cab302.javafxreadingdemo.Session;
+import com.cab302.javafxreadingdemo.badger.BadgerClient;
 /**
  * Controller to handle home screen of application
  *
@@ -26,6 +36,9 @@ import atlantafx.base.theme.CupertinoLight;
 public class HomeController {
 @FXML private StackPane rootStack;
 @FXML private Region    contentRoot;
+@FXML private Label streakLabel;                   // will be injected from FXML
+
+    private final BadgerClient badger = BadgerClient.fromProperties();
 
     // Log out handler
     @FXML
@@ -52,27 +65,33 @@ public class HomeController {
     // Initialises once FXML is loaded
     @FXML
     private void initialize() {
-        // Only one button active at once:
+        // group the toggles
         ToggleGroup themeGroup = new ToggleGroup();
         lightBtn.setToggleGroup(themeGroup);
         darkBtn.setToggleGroup(themeGroup);
 
-        // Handle theme changes
+        // handle theme changes
         themeGroup.selectedToggleProperty().addListener((obs, oldT, newT) -> {
             if (newT == null) return;
             ToggleButton btn = (ToggleButton) newT;
-            // Switch based on button text
-            if ("Light".equals(btn.getText())) {
-                Application.setUserAgentStylesheet(
-                        new CupertinoLight().getUserAgentStylesheet()
-                );
-            } else {
-                Application.setUserAgentStylesheet(
-                        new Dracula().getUserAgentStylesheet()
-                );
-            }
+            Application.setUserAgentStylesheet(
+                    "Light".equals(btn.getText())
+                            ? new CupertinoLight().getUserAgentStylesheet()
+                            : new Dracula().getUserAgentStylesheet()
+            );
         });
+
+        // 🔽 DO THIS ON LOAD (not inside the listener)
+        System.out.println("Home init: userId=" + Session.getCurrentUserId()
+                + ", labelNull=" + (streakLabel == null));
+        refreshStreak();
+
+        // optional: re-read shortly after to allow event processing
+        PauseTransition t = new PauseTransition(Duration.seconds(1.5));
+        t.setOnFinished(e -> refreshStreak());
+        t.play();
     }
+
 
     // Handles calendar opening
     @FXML
@@ -88,6 +107,28 @@ public class HomeController {
         }
     }
 
+    private String readBadgeId() {
+        try (var in = getClass().getResourceAsStream("/app.properties")) {
+            var p = new java.util.Properties();
+            p.load(in);
+            return p.getProperty("badger.badgeId", "login_streak");
+        } catch (Exception e) { return "login_streak"; }
+    }
+
+
+        private void refreshStreak() {
+            String userId  = Session.getCurrentUserId();
+            String badgeId = readBadgeId();
+
+            CompletableFuture.supplyAsync(() -> {
+                try { return badger.getStreak(userId, badgeId); }
+                catch (Exception e) { e.printStackTrace(); return -1; }
+            }).thenAccept(streak -> Platform.runLater(() -> {
+                if (streak >= 0) streakLabel.setText("🔥 " + streak + "-day streak");
+                else streakLabel.setText("Streak: unavailable");
+            }));
+
+        }
 
 }
 
