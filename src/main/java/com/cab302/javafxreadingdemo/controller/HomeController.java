@@ -21,6 +21,13 @@ import javafx.animation.PauseTransition;
 import javafx.util.Duration;
 import java.io.InputStream;
 import java.util.Properties;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+
+
 
 import com.cab302.javafxreadingdemo.Session;
 import com.cab302.javafxreadingdemo.badger.BadgerClient;
@@ -65,45 +72,38 @@ public class HomeController {
     // Initialises once FXML is loaded
     @FXML
     private void initialize() {
-        // group the toggles
+        // Only one button active at once:
         ToggleGroup themeGroup = new ToggleGroup();
         lightBtn.setToggleGroup(themeGroup);
         darkBtn.setToggleGroup(themeGroup);
 
-        // handle theme changes
+        // Handle theme changes
         themeGroup.selectedToggleProperty().addListener((obs, oldT, newT) -> {
             if (newT == null) return;
             ToggleButton btn = (ToggleButton) newT;
-            Application.setUserAgentStylesheet(
-                    "Light".equals(btn.getText())
-                            ? new CupertinoLight().getUserAgentStylesheet()
-                            : new Dracula().getUserAgentStylesheet()
-            );
-        });
-
-        // 🔽 DO THIS ON LOAD (not inside the listener)
-        System.out.println("Home init: userId=" + Session.getCurrentUserId()
-                + ", labelNull=" + (streakLabel == null));
-        refreshStreak();
-
-        // optional: re-read shortly after to allow event processing
-        PauseTransition t = new PauseTransition(Duration.seconds(1.5));
-        t.setOnFinished(e -> refreshStreak());
-        t.play();
+            // Switch based on button text
+            if ("Light".equals(btn.getText())) {
+                Application.setUserAgentStylesheet(
+                        new CupertinoLight().getUserAgentStylesheet()
+                );
+            } else {
+                Application.setUserAgentStylesheet(
+                        new Dracula().getUserAgentStylesheet()
+                );
+            }
+                });
     }
-
 
     // Handles calendar opening
     @FXML
-    private void onOpenCalendar() {
+    private void onOpenCalendar(ActionEvent e) {
         try {
             Parent calendarRoot = FXMLLoader.load(
-                    HelloApplication.class.getResource("calendar-view.fxml")
+                    getClass().getResource("/com/cab302/javafxreadingdemo/calendar-view.fxml")
             );
-            Scene scene = rootStack.getScene();
-            scene.setRoot(calendarRoot);
-        } catch (Exception e) {
-            e.printStackTrace();
+            ((Node) e.getSource()).getScene().setRoot(calendarRoot);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
