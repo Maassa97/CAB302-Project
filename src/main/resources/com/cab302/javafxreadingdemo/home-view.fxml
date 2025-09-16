@@ -9,16 +9,23 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="414.0" prefWidth="1200" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cab302.javafxreadingdemo.controller.HomeController">
    <top>
 
-          <VBox alignment="CENTER" prefHeight="59.0" prefWidth="460.0" spacing="20" BorderPane.alignment="CENTER">
+          <VBox alignment="CENTER" prefHeight="59.0" prefWidth="1150.0" spacing="20" BorderPane.alignment="CENTER">
          <HBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="465.0">
             <children>
                <HBox prefHeight="81.0" prefWidth="200.0" />
-                  <ToggleButton fx:id="lightBtn" text="Light" />
-                  <ToggleButton fx:id="darkBtn" text="Dark" />
+                  <ToggleButton fx:id="lightBtn" text="Light">
+                  <font>
+                     <Font size="18.0" />
+                  </font></ToggleButton>
+                  <ToggleButton fx:id="darkBtn" text="Dark">
+                  <font>
+                     <Font size="18.0" />
+                  </font></ToggleButton>
                <SplitMenuButton mnemonicParsing="false" text="Menu">
                  <items>
                    <MenuItem mnemonicParsing="false" text="Log Out" />
@@ -80,7 +87,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minHeight="80.0" minWidth="300.0"  prefHeight="40.0" text="Flashcards" HBox.hgrow="SOMETIMES">
+                        <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0" text="Flashcards" HBox.hgrow="SOMETIMES">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -103,7 +110,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minHeight="80.0" minWidth="300.0"  prefHeight="40.0" text="Grade Calculator" HBox.hgrow="SOMETIMES">
+                        <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0" text="Grade Calculator" HBox.hgrow="SOMETIMES">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -126,7 +133,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minHeight="80.0" minWidth="300.0"   prefHeight="40.0" text="To-do List" HBox.hgrow="SOMETIMES">
+                        <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0" text="To-do List" HBox.hgrow="SOMETIMES">
                            <font>
                               <Font size="30.0" />
                            </font>
