@@ -13,6 +13,9 @@ import javafx.scene.control.ToggleGroup;
 import atlantafx.base.theme.Dracula;
 //import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.CupertinoLight;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+
 
 /**
  * Controller to handle home screen of application
@@ -76,18 +79,16 @@ public class HomeController {
 
     // Handles calendar opening
     @FXML
-    private void onOpenCalendar() {
+    private void onOpenCalendar(ActionEvent e) {
         try {
             Parent calendarRoot = FXMLLoader.load(
-                    HelloApplication.class.getResource("calendar-view.fxml")
+                    getClass().getResource("/com/cab302/javafxreadingdemo/calendar-view.fxml")
             );
-            Scene scene = rootStack.getScene();
-            scene.setRoot(calendarRoot);
-        } catch (Exception e) {
-            e.printStackTrace();
+            ((Node) e.getSource()).getScene().setRoot(calendarRoot);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
-
 
 }
 
