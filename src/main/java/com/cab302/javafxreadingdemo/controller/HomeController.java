@@ -15,6 +15,10 @@ import atlantafx.base.theme.Dracula;
 import atlantafx.base.theme.CupertinoLight;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+
 
 
 /**
@@ -29,6 +33,8 @@ import javafx.scene.Node;
 public class HomeController {
 @FXML private StackPane rootStack;
 @FXML private Region    contentRoot;
+
+
 
     // Log out handler
     @FXML
@@ -74,7 +80,7 @@ public class HomeController {
                         new Dracula().getUserAgentStylesheet()
                 );
             }
-        });
+                });
     }
 
     // Handles calendar opening

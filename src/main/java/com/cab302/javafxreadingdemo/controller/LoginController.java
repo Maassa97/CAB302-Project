@@ -79,6 +79,11 @@ public class LoginController {
             // Change from login to home
             Stage stage = (Stage) signInButton.getScene().getWindow();
             stage.getScene().setRoot(root);
+            stage.setMinWidth(900);
+            stage.setMinHeight(600);
+            stage.setWidth(1200);
+            stage.setHeight(800);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             // handle invalid FXML elements
