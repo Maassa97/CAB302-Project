@@ -29,6 +29,9 @@
                   <HBox.margin>
                      <Insets left="10.0" />
                   </HBox.margin>
+                  <font>
+                     <Font size="18.0" />
+                  </font>
                </SplitMenuButton>
             </children>
          </HBox>
@@ -40,19 +43,34 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label styleClass="title-1" text="Welcome to Cal-Calc" />
-                  <Label styleClass="title-3" text="The premier all in one study budy " />
+                  <Label styleClass="title-1" text="Welcome to Cal-Calc">
+                     <font>
+                        <Font size="70.0" />
+                     </font></Label>
+                  <Label styleClass="title-3" text="The premier all in one study budy ">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                          <Button minWidth="200.0" onAction="#onOpenCalendar" prefHeight="40.0" text="Open Calendar" HBox.hgrow="SOMETIMES" />
+                          <Button minHeight="80.0" minWidth="300.0" onAction="#onOpenCalendar" prefHeight="40.0" text="Calendar" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </HBox.margin></Button>
                         <Label minWidth="400.0" text="All in one calendar to help you stay on top of your assignments " wrapText="true">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -62,11 +80,20 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minWidth="200.0" onAction="#onOpenCalendar" prefHeight="40.0" text="Open Flashcards" HBox.hgrow="SOMETIMES" />
+                        <Button minHeight="80.0" minWidth="300.0"  prefHeight="40.0" text="Flashcards" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin></Button>
                         <Label minWidth="400.0" text="Need help memorising for an upcoming test? Use these flashcards and you'll ace it! " wrapText="true">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -76,11 +103,20 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minWidth="200.0" onAction="#onOpenCalendar" prefHeight="40.0" text="Open Grade Calculator" HBox.hgrow="SOMETIMES" />
+                        <Button minHeight="80.0" minWidth="300.0"  prefHeight="40.0" text="Grade Calculator" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin></Button>
                         <Label minWidth="400.0" text="Make sure you can scrape out that 4 on your toughest subject with our grade calculator!" wrapText="true">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -90,11 +126,20 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minWidth="200.0" onAction="#onOpenCalendar" prefHeight="40.0" text="Open To-do List" HBox.hgrow="SOMETIMES" />
+                        <Button minHeight="80.0" minWidth="300.0"   prefHeight="40.0" text="To-do List" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin></Button>
                         <Label minWidth="400.0" text="We all have goals, make sure you reach them today!" wrapText="true">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
