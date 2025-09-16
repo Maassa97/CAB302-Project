@@ -11,9 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import atlantafx.base.theme.Dracula;
-//import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.CupertinoLight;
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.application.Platform;
 import java.util.concurrent.CompletableFuture;
@@ -23,9 +22,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.application.Platform;
 import javafx.stage.Stage;
-import javafx.scene.Node;
+
 
 
 
@@ -43,7 +41,7 @@ import com.cab302.javafxreadingdemo.badger.BadgerClient;
 public class HomeController {
 @FXML private StackPane rootStack;
 @FXML private Region    contentRoot;
-@FXML private Label streakLabel;                   // will be injected from FXML
+@FXML private Label streakLabel;
 
     private final BadgerClient badger = BadgerClient.fromProperties();
 
@@ -92,6 +90,7 @@ public class HomeController {
                 );
             }
                 });
+        refreshStreak();
     }
 
     // Handles calendar opening
@@ -107,28 +106,34 @@ public class HomeController {
         }
     }
 
+    private void refreshStreak() {
+        String userId = Session.getCurrentUserId(); // same helper you used before
+        if (userId == null || userId.isBlank()) {
+            streakLabel.setText("Streak: --");
+            return;
+        }
+        String badgeId = readBadgeId();
+
+        java.util.concurrent.CompletableFuture
+                .supplyAsync(() -> {
+                    try { return badger.getStreak(userId, badgeId); }
+                    catch (Exception e) { e.printStackTrace(); return -1; }
+                })
+                .thenAccept(streak -> Platform.runLater(() ->
+                        streakLabel.setText(streak >= 0 ? ("🔥 " + streak + "-day streak") : "Streak: unavailable")
+                ));
+    }
+
     private String readBadgeId() {
         try (var in = getClass().getResourceAsStream("/app.properties")) {
             var p = new java.util.Properties();
             p.load(in);
-            return p.getProperty("badger.badgeId", "login_streak");
-        } catch (Exception e) { return "login_streak"; }
+            return p.getProperty("badger.badgeId", "streak_store");
+        } catch (Exception e) {
+            return "streak_store";
+        }
     }
 
-
-        private void refreshStreak() {
-            String userId  = Session.getCurrentUserId();
-            String badgeId = readBadgeId();
-
-            CompletableFuture.supplyAsync(() -> {
-                try { return badger.getStreak(userId, badgeId); }
-                catch (Exception e) { e.printStackTrace(); return -1; }
-            }).thenAccept(streak -> Platform.runLater(() -> {
-                if (streak >= 0) streakLabel.setText("🔥 " + streak + "-day streak");
-                else streakLabel.setText("Streak: unavailable");
-            }));
-
-        }
 
 }
 

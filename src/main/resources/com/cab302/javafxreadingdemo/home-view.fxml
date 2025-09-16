@@ -58,6 +58,7 @@
                      <font>
                         <Font size="22.0" />
                      </font></Label>
+                  <Label fx:id="streakLabel" text="Streak: --" styleClass="helper-text"/>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
