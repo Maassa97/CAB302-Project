@@ -1,4 +1,3 @@
-// package Badger;   // <-- keep this if your file already has it
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;

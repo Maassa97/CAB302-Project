@@ -8,6 +8,7 @@ module com.cab302.javafxreadingdemo {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.annotation;
+    requires jdk.httpserver;
 
     opens com.cab302.javafxreadingdemo.controller to javafx.fxml;
 
