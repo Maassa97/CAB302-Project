@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="BadgerServer" type="Application" factoryName="Application" nameIsGenerated="true">
+    <envs>
+      <env name="BADGER_APP_ID" value="9bd2d6ce-c1d3-4067-92cc-923a8b45f46f" />
+      <env name="BADGER_APP_SECRET" value="app_74050906-774b-46ea-a45a-2537a68efd2d" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="BadgerServer" />
+    <module name="badger-proxy" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
