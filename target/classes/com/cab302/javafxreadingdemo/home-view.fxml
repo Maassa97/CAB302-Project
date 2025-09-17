@@ -16,6 +16,4 @@
             <ToggleButton fx:id="darkBtn" text="Dark"/>
         </HBox>
     </VBox>
-
-
 </StackPane>
