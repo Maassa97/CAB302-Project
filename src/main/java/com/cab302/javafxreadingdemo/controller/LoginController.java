@@ -131,29 +131,7 @@ public class LoginController {
         }
     }
 
-    //placeholder flashcard code. will move to the correct spot eventually
-    @FXML private Button flashcardButton;
-    @FXML
-    private void test()
-    {
-        try {
-            // load Flashcard scene
-            FXMLLoader loader =
-                    new FXMLLoader(HelloApplication.class.getResource("flashcard-view.fxml"));
-            Parent root = loader.load();
 
-            // replace current scene with Flashcard scene
-            Stage stage = (Stage) flashcardButton.getScene().getWindow();
-            stage.getScene().setRoot(root);
-
-            // clear any prior error
-            errorLabel.setText("");
-        } catch (IOException e) {
-            // handle invalid FXML elements
-            errorLabel.setText("Could not open Flashcards.");
-            e.printStackTrace();
-        }
-    }
 
     // UI error messages
     private void showError(String msg) {

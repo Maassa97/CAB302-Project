@@ -6,7 +6,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane  xmlns:fx="http://javafx.com/fxml"
+<StackPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.cab302.javafxreadingdemo.controller.Flashcards.DeckController"
             prefHeight="420.0" prefWidth="520.0"
             styleClass="root">
@@ -29,15 +30,11 @@
                         <Label text="Deck Name:" style="-fx-font-size: 16" GridPane.rowIndex="1"/>
                         <TextField fx:id="deckName" promptText="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                        <Button text="Add new Card" GridPane.rowIndex="2"/>
-
-                        <Label fx:id="errorLabel" text="" GridPane.rowIndex="14" GridPane.columnIndex="1"/>
-                        <Button text="Finish deck" GridPane.rowIndex="14" fx:id="finishDeckButton" onAction="#finishDeck"/>
+                        <Button text="Finish Deck" fx:id="finishDeckButton" GridPane.rowIndex="14" onAction="#finishDeck"/>
 
                     </GridPane>
                 </VBox>
             </center>
         </BorderPane>
     </children>
-
 </StackPane>
