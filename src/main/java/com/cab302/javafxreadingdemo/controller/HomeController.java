@@ -11,9 +11,24 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import atlantafx.base.theme.Dracula;
-//import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.CupertinoLight;
+import javafx.scene.control.Label;
+import javafx.application.Platform;
+import java.util.concurrent.CompletableFuture;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
+import java.io.InputStream;
+import java.util.Properties;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
+
+
+
+import com.cab302.javafxreadingdemo.Session;
+import com.cab302.javafxreadingdemo.badger.BadgerClient;
 /**
  * Controller to handle home screen of application
  *
@@ -26,6 +41,9 @@ import atlantafx.base.theme.CupertinoLight;
 public class HomeController {
 @FXML private StackPane rootStack;
 @FXML private Region    contentRoot;
+@FXML private Label streakLabel;
+
+    private final BadgerClient badger = BadgerClient.fromProperties();
 
     // Log out handler
     @FXML
@@ -71,20 +89,48 @@ public class HomeController {
                         new Dracula().getUserAgentStylesheet()
                 );
             }
-        });
+                });
+        refreshStreak();
     }
 
     // Handles calendar opening
     @FXML
-    private void onOpenCalendar() {
+    private void onOpenCalendar(ActionEvent e) {
         try {
             Parent calendarRoot = FXMLLoader.load(
-                    HelloApplication.class.getResource("calendar-view.fxml")
+                    getClass().getResource("/com/cab302/javafxreadingdemo/calendar-view.fxml")
             );
-            Scene scene = rootStack.getScene();
-            scene.setRoot(calendarRoot);
+            ((Node) e.getSource()).getScene().setRoot(calendarRoot);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void refreshStreak() {
+        String userId = Session.getCurrentUserId(); // same helper you used before
+        if (userId == null || userId.isBlank()) {
+            streakLabel.setText("Streak: --");
+            return;
+        }
+        String badgeId = readBadgeId();
+
+        java.util.concurrent.CompletableFuture
+                .supplyAsync(() -> {
+                    try { return badger.getStreak(userId, badgeId); }
+                    catch (Exception e) { e.printStackTrace(); return -1; }
+                })
+                .thenAccept(streak -> Platform.runLater(() ->
+                        streakLabel.setText(streak >= 0 ? ("🔥 " + streak + "-day streak") : "Streak: unavailable")
+                ));
+    }
+
+    private String readBadgeId() {
+        try (var in = getClass().getResourceAsStream("/app.properties")) {
+            var p = new java.util.Properties();
+            p.load(in);
+            return p.getProperty("badger.badgeId", "streak_store");
         } catch (Exception e) {
-            e.printStackTrace();
+            return "streak_store";
         }
     }
 

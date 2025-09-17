@@ -5,3 +5,7 @@
     -fx-font-weight: bold;
 }
 
+.helper-text { -fx-text-fill: #cbd5e1; -fx-opacity: 0.9; }
+.card { -fx-padding: 18; -fx-background-color: #262938; -fx-background-radius: 12; }
+.card-title { -fx-font-size: 14; -fx-text-fill: #a5b4fc; }
+.streak-number { -fx-font-size: 28; -fx-font-weight: bold; }
