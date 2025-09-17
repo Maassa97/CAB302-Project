@@ -11,7 +11,7 @@
         <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
     </padding>
 
-    <Label text="🎓 Grade Calculator" styleClass="title-1"/>
+    <Label text="Grade Calculator" styleClass="title-1"/>
 
     <HBox spacing="10">
         <TextField fx:id="gradeInput" promptText="Enter grade (0–7)" />
