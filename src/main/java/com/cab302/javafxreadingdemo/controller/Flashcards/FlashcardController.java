@@ -17,7 +17,7 @@ public class FlashcardController
     @FXML private Button newDeckButton;
     @FXML private Button editDeckButton;
     @FXML private Button startPracticeButton;
-
+    @FXML private Label errorLabel;
 
     public void newDeck()
     {
@@ -32,11 +32,13 @@ public class FlashcardController
             Stage stage = (Stage) newDeckButton.getScene().getWindow();
             stage.getScene().setRoot(root);
 
-            //currently not implemented error handling
+            errorLabel.setText("");
         }
+        //Error handling
         catch (IOException e)
         {
-            System.out.println("will sort error handling later");
+            errorLabel.setText("Could not open New Deck screen.");
+            e.printStackTrace();
         }
     }
 
@@ -54,11 +56,13 @@ public class FlashcardController
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.getScene().setRoot(root);
 
-        //currently not implemented error handling
+            errorLabel.setText("");
         }
+        //error handling
         catch (IOException e)
         {
-            System.out.println("will sort error handling later");
+            errorLabel.setText("Could not open Home Menu Screen.");
+            e.printStackTrace();
         }
     }
 }

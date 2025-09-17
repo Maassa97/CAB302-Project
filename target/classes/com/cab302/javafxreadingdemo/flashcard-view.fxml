@@ -35,6 +35,7 @@
             </center>
             <bottom>
                 <HBox alignment="CENTER">
+                    <Label fx:id="errorLabel" text=""/>
                     <Button text="Back" fx:id="backButton" prefWidth="70" onAction="#back"/>
                 </HBox>
             </bottom>
