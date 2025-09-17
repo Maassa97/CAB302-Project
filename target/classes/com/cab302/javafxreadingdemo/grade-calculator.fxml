@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.cab302.javafxreadingdemo.controller.GradeController"
+      alignment="CENTER" spacing="20.0">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <Label text="🎓 Grade Calculator" styleClass="title-1"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="gradeInput" promptText="Enter grade (0–7)" />
+        <Button text="Add" onAction="#onAddGrade"/>
+        <Button text="Delete" onAction="#onDeleteGrade"/>
+    </HBox>
+
+    <TableView fx:id="gradeTable" prefWidth="300">
+        <columns>
+            <TableColumn fx:id="valueColumn" text="Grade"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="averageLabel" text="Average: --"/>
+
+    <Button text="Home" onAction="#onBackToHome"/>
+</VBox>

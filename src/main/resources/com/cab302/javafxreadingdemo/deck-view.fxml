@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cab302.javafxreadingdemo.controller.Flashcards.DeckController"
+            prefHeight="420.0" prefWidth="520.0"
+            styleClass="root">
+
+    <children>
+        <BorderPane maxWidth="380" maxHeight="500" BorderPane.alignment="CENTER">
+            <top>
+                <VBox alignment="TOP_CENTER" styleClass="title">
+                    <Label text="Create New Deck" style="-fx-font-size: 30;"/>
+                </VBox>
+            </top>
+            <center>
+                <VBox maxWidth="360" maxHeight="400" spacing="80" style="-fx-border-color: white; -fx-border-width: 2;">
+                    <GridPane hgap="10" vgap="20">
+                        <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" minWidth="90"/>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                        </columnConstraints>
+
+                        <Label text="Deck Name:" style="-fx-font-size: 16" GridPane.rowIndex="1"/>
+                        <TextField fx:id="deckName" promptText="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+
+
+                    </GridPane>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+
+</StackPane>
