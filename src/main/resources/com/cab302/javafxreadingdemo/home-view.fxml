@@ -111,13 +111,17 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0" text="Grade Calculator" HBox.hgrow="SOMETIMES">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets bottom="10.0" />
-                           </HBox.margin></Button>
+                         <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0"
+                                 text="Grade Calculator"
+                                 onAction="#onOpenGradeCalculator"
+                                 HBox.hgrow="SOMETIMES">
+                             <font>
+                                 <Font size="30.0" />
+                             </font>
+                             <HBox.margin>
+                                 <Insets bottom="10.0" />
+                             </HBox.margin>
+                         </Button>
                         <Label minWidth="400.0" text="Make sure you can scrape out that 4 on your toughest subject with our grade calculator!" wrapText="true">
                            <padding>
                               <Insets left="20.0" />

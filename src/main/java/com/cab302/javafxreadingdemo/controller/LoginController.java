@@ -1,7 +1,7 @@
 package com.cab302.javafxreadingdemo.controller;
 
 import com.cab302.javafxreadingdemo.HelloApplication;
-import com.cab302.javafxreadingdemo.model.IUserDAO;
+import com.cab302.javafxreadingdemo.model.UserDAO;
 import com.cab302.javafxreadingdemo.model.SqliteUserDAO;
 import com.cab302.javafxreadingdemo.model.User;
 import com.cab302.javafxreadingdemo.badger.BadgerClient;
@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.event.ActionEvent;
 import com.cab302.javafxreadingdemo.Session;
 
 /** Controller class for login screen
@@ -65,7 +64,7 @@ public class LoginController {
         }
 
         // Check DB for user
-        IUserDAO userDAO = new SqliteUserDAO();
+        UserDAO userDAO = new SqliteUserDAO();
         User user = userDAO.getUserByEmail(email);
 
         // Check password with BCrypt

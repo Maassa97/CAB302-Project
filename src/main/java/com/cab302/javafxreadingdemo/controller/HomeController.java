@@ -23,6 +23,7 @@ import java.util.Properties;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 
 
@@ -134,6 +135,17 @@ public class HomeController {
         }
     }
 
+    @FXML
+    private void onOpenGradeCalculator(ActionEvent e) {
+        try {
+            Parent gradeRoot = FXMLLoader.load(
+                    HelloApplication.class.getResource("grade-calculator.fxml")
+            );
+            ((Node) e.getSource()).getScene().setRoot(gradeRoot);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 }
 

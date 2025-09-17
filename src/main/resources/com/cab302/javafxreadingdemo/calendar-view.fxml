@@ -10,7 +10,7 @@
 
     <!-- Top: Back Button -->
     <top>
-        <Button text="← Back to Home" onAction="#onBackToHome" />
+        <Button text="Home" onAction="#onBackToHome" />
     </top>
 
     <!-- Center: CalendarView -->

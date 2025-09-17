@@ -8,7 +8,7 @@ import java.util.List;
  * SQLite-backed implementation of IUserDAO.
  * Handles persistence of users into a local SQLite database.
  */
-public class SqliteUserDAO implements IUserDAO {
+public class SqliteUserDAO implements UserDAO {
 
     // SQL statement to create the users table if it does not exist
     private static final String CREATE_USERS_TABLE =
