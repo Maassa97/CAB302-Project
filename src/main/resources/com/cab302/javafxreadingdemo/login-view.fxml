@@ -20,6 +20,10 @@
                             <Label text="Please sign in to continue" styleClass="helper-text"/>
                         </VBox>
 
+                        <VBox alignment="BASELINE_LEFT" spacing="5">
+                            <Button fx:id="flashcardButton" text="flashcards" onAction="#test"/>
+                        </VBox>
+
                         <GridPane hgap="12" vgap="12">
                             <columnConstraints>
                                 <ColumnConstraints halignment="RIGHT" minWidth="80"/>
@@ -54,3 +58,5 @@
         </BorderPane>
     </children>
 </StackPane>
+
+

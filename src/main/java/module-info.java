@@ -22,6 +22,8 @@ module com.cab302.javafxreadingdemo {
 
     exports com.cab302.javafxreadingdemo;
     exports com.cab302.javafxreadingdemo.controller;
+    exports com.cab302.javafxreadingdemo.controller.Flashcards;
+    opens com.cab302.javafxreadingdemo.controller.Flashcards to javafx.fxml;
 }
 
 
