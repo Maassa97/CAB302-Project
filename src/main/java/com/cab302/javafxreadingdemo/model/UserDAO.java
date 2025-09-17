@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * DAO (Data Access Object) interface for persisting and retrieving users.
  */
-public interface IUserDAO {
+public interface UserDAO {
 
     /**
      * Add a new user to the database.

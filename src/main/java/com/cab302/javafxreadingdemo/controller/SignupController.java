@@ -31,7 +31,7 @@ public class SignupController {
     @FXML private Button createButton; //"Create Account" button
 
     // DAO for database opertations
-    private final IUserDAO userDAO = new SqliteUserDAO();
+    private final UserDAO userDAO = new SqliteUserDAO();
 
     /** Handles account creation
      * 1. validate inputs

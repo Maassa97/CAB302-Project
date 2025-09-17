@@ -1,9 +1,11 @@
 package com.cab302.javafxreadingdemo.controller;
 
 import com.cab302.javafxreadingdemo.HelloApplication;
-import com.cab302.javafxreadingdemo.model.IUserDAO;
+import com.cab302.javafxreadingdemo.model.UserDAO;
 import com.cab302.javafxreadingdemo.model.SqliteUserDAO;
 import com.cab302.javafxreadingdemo.model.User;
+import com.cab302.javafxreadingdemo.badger.BadgerClient;
+
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
-
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
+import com.cab302.javafxreadingdemo.Session;
 
 /** Controller class for login screen
  *
@@ -31,6 +35,8 @@ public class LoginController {
     @FXML private Button signInButton; //"Sign up"
     @FXML private Label errorLabel; //label for errors
 
+    private final BadgerClient badger = BadgerClient.fromProperties();
+
     @FXML
 
     /** onSignIn handles user sign in attempt when pressing button
@@ -39,11 +45,13 @@ public class LoginController {
      * 3. verify pword vs stored BCrypt hash
      * 4. Opens home-view.fxml -> if successful
      */
+
+
     private void onSignIn() {
 
         // User input
-        String email = emailField.getText() == null ? "" : emailField.getText().trim();
-        String pass  = passwordField.getText() == null ? "" : passwordField.getText();
+        String email = emailField.getText().trim();
+        String pass  = passwordField.getText();
 
         // Basic validation
         if (email.isEmpty() || pass.isEmpty()) {
@@ -56,7 +64,7 @@ public class LoginController {
         }
 
         // Check DB for user
-        IUserDAO userDAO = new SqliteUserDAO();
+        UserDAO userDAO = new SqliteUserDAO();
         User user = userDAO.getUserByEmail(email);
 
         // Check password with BCrypt
@@ -64,6 +72,10 @@ public class LoginController {
             showError("Invalid email or password.");
             return;
         }
+
+        String userId = emailField.getText().trim();
+        Session.setCurrentUserId(userId);
+        badger.sendLoginEvent(email);
 
         // Successful login
         errorLabel.setText("");
@@ -79,6 +91,11 @@ public class LoginController {
             // Change from login to home
             Stage stage = (Stage) signInButton.getScene().getWindow();
             stage.getScene().setRoot(root);
+            stage.setMinWidth(900);
+            stage.setMinHeight(600);
+            stage.setWidth(1200);
+            stage.setHeight(800);
+            stage.centerOnScreen();
 
         } catch (IOException e) {
             // handle invalid FXML elements
@@ -89,6 +106,7 @@ public class LoginController {
         }
 
     }
+
 
     /**
      * Handles "Sign Up" page
@@ -142,3 +160,4 @@ public class LoginController {
         errorLabel.setText(msg);
     }
 }
+

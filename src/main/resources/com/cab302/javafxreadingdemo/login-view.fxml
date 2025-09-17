@@ -16,7 +16,7 @@
                 <VBox spacing="20" alignment="CENTER" BorderPane.alignment="CENTER" styleClass="login-card">
                     <children>
                         <VBox alignment="CENTER">
-                            <Label text="Welcome to Cal-Calc" styleClass="login-title"/>
+                            <Label text="Welcome to Cal-Calc" styleClass="title-1"/>
                             <Label text="Please sign in to continue" styleClass="helper-text"/>
                         </VBox>
 
