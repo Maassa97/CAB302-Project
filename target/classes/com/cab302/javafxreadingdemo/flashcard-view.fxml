@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import atlantafx.base.controls.Tile?>
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.cab302.javafxreadingdemo.controller.Flashcards.FlashcardController"
+           prefHeight="420.0" prefWidth="520.0"
+           styleClass="root">
+
+    <children>
+        <BorderPane maxWidth="380" maxHeight="500" BorderPane.alignment="CENTER">
+            <top>
+                <VBox alignment="TOP_CENTER" styleClass="title">
+                    <Label text="Flashcards!" underline="true" style="-fx-font-size: 40;"/>
+                    <Label text="Create Flashcards to improve your study!" style="-fx-font-size: 15;"/>
+                </VBox>
+            </top>
+            <center>
+                <GridPane vgap="30" alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" minWidth="90"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <Button text="Create New Deck" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="newDeckButton" onAction="#newDeck"/>
+                    <Button text="Edit Decks" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="editDeckButton"/>
+                    <Button text="Begin Practice" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="startPracticeButton"/>
+
+                </GridPane>
+            </center>
+            <bottom>
+                <HBox alignment="CENTER">
+                    <Button text="Back" fx:id="backButton" prefWidth="70" onAction="#back"/>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </children>
+</StackPane>
