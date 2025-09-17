@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.ToggleButton;
@@ -142,6 +143,26 @@ public class HomeController {
                     HelloApplication.class.getResource("grade-calculator.fxml")
             );
             ((Node) e.getSource()).getScene().setRoot(gradeRoot);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    //placeholder flashcard code. will move to the correct spot eventually
+    @FXML private Button flashcardButton;
+    @FXML
+    private void openFlashcard()
+    {
+        try {
+            // load Flashcard scene
+            FXMLLoader loader =
+                    new FXMLLoader(HelloApplication.class.getResource("flashcard-view.fxml"));
+            Parent root = loader.load();
+
+            // replace current scene with Flashcard scene
+            Stage stage = (Stage) flashcardButton.getScene().getWindow();
+            stage.getScene().setRoot(root);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
