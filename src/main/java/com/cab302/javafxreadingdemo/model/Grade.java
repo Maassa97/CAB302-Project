@@ -4,6 +4,7 @@ package com.cab302.javafxreadingdemo.model;
  * Model class representing a Grade (out of 7).
  */
 public class Grade {
+    //fields
     private int id;        // Database primary key
     private double value;  // Grade value (0–7)
 
@@ -16,7 +17,7 @@ public class Grade {
         this.value = value;
     }
 
-    // --- Getters & Setters ---
+    // Getter/setter
     public int getId() {
         return id;
     }

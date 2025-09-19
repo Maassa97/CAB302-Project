@@ -1,31 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.cab302.javafxreadingdemo.controller.GradeController"
-      alignment="CENTER" spacing="20.0">
+      spacing="12">
     <padding>
-        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+        <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
 
-    <Label text="🎓 Grade Calculator" styleClass="title-1"/>
+    <children>
 
-    <HBox spacing="10">
-        <TextField fx:id="gradeInput" promptText="Enter grade (0–7)" />
-        <Button text="Add" onAction="#onAddGrade"/>
-        <Button text="Delete" onAction="#onDeleteGrade"/>
-    </HBox>
+        <HBox spacing="8">
+            <Button text="Home" onAction="#onBackToHome"/>
+            <Label text="Grade Calculator"/>
+        </HBox>
 
-    <TableView fx:id="gradeTable" prefWidth="300">
-        <columns>
-            <TableColumn fx:id="valueColumn" text="Grade"/>
-        </columns>
-    </TableView>
+        <HBox spacing="8">
+            <TextField fx:id="subjectNameField" promptText="New subject name"/>
+            <Button fx:id="addSubjectBtn" text="Add Subject" onAction="#onAddSubject"/>
+            <ComboBox fx:id="subjectCombo" promptText="Select subject" prefWidth="220"/>
+            <Label fx:id="subjectCountLabel" text="0/4 subjects"/>
+        </HBox>
 
-    <Label fx:id="averageLabel" text="Average: --"/>
+        <HBox spacing="8">
+            <TextField fx:id="assessNameField"  promptText="Assessment name"/>
+            <TextField fx:id="assessWeightField" promptText="Weight %"/>
+            <TextField fx:id="assessMarkField"   promptText="Mark %"/>
+            <Button fx:id="addAssessmentBtn" text="Add" onAction="#onAddAssessment"/>
+            <Button fx:id="deleteAssessmentBtn" text="Delete Selected" onAction="#onDeleteAssessment"/>
+        </HBox>
 
-    <Button text="Home" onAction="#onBackToHome"/>
+        <TableView fx:id="assessmentTable" prefHeight="260">
+            <columns>
+                <TableColumn fx:id="colName"         text="Assessment"      prefWidth="200"/>
+                <TableColumn fx:id="colWeight"       text="Weight %"        prefWidth="100"/>
+                <TableColumn fx:id="colMark"         text="Mark %"          prefWidth="100"/>
+                <TableColumn fx:id="colContribution" text="Contribution %"  prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="16">
+            <Label fx:id="subjectWeightSum" text="Weight Sum: --"/>
+            <Label fx:id="subjectPercent"   text="Subject %: --"/>
+            <Label fx:id="subjectGpa"       text="Subject GPA: --"/>
+        </HBox>
+
+        <HBox spacing="16">
+            <Label fx:id="overallPercent" text="Overall %: --"/>
+            <Label fx:id="overallGpa"     text="Overall GPA: --"/>
+        </HBox>
+
+    </children>
 </VBox>

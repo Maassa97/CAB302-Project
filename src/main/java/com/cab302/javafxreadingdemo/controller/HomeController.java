@@ -108,6 +108,7 @@ public class HomeController {
         }
     }
 
+    //streak refresh
     private void refreshStreak() {
         String userId = Session.getCurrentUserId(); // same helper you used before
         if (userId == null || userId.isBlank()) {
@@ -126,6 +127,7 @@ public class HomeController {
                 ));
     }
 
+    //read badgerID for user
     private String readBadgeId() {
         try (var in = getClass().getResourceAsStream("/app.properties")) {
             var p = new java.util.Properties();
@@ -136,6 +138,7 @@ public class HomeController {
         }
     }
 
+    //open grade calculator
     @FXML
     private void onOpenGradeCalculator(ActionEvent e) {
         try {
