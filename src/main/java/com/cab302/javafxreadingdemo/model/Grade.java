@@ -5,8 +5,8 @@ package com.cab302.javafxreadingdemo.model;
  */
 public class Grade {
     //fields
-    private int id;        // Database primary key
-    private double value;  // Grade value (0–7)
+    private int id;        // DB primary key
+    private double value;  // GPA (0–7)
 
     public Grade(double value) {
         this.value = value;

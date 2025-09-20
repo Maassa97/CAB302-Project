@@ -1,5 +1,6 @@
 package com.cab302.javafxreadingdemo.model;
 
+//group assessments and populate UI
 public class Subject {
     private int id;
     private String name;

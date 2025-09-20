@@ -19,38 +19,50 @@ import java.io.IOException;
 import java.util.List;
 import java.util.OptionalDouble;
 
-
+/** Grade calculator screen controller
+ * Role:
+ * -Creates up to 4 subjects
+ * -Add/delete assessments for each subject accounting for weight and mark.
+ * -Compute % and GPA for subjects and overall
+ */
 public class GradeController {
 
+    //subject control
     @FXML private TextField subjectNameField;
     @FXML private Button addSubjectBtn;
     @FXML private ComboBox<Subject> subjectCombo;
     @FXML private Label subjectCountLabel;
 
+    //assessment control
     @FXML private TextField assessNameField;
     @FXML private TextField assessWeightField;
     @FXML private TextField assessMarkField;
     @FXML private Button addAssessmentBtn;
     @FXML private Button deleteAssessmentBtn;
 
+    //assessment table control
     @FXML private TableView<Assessment> assessmentTable;
     @FXML private TableColumn<Assessment, String> colName;
     @FXML private TableColumn<Assessment, Double> colWeight;
     @FXML private TableColumn<Assessment, Double> colMark;
     @FXML private TableColumn<Assessment, Double> colContribution;
 
+    //summarised grades (GPA + %) control
     @FXML private Label subjectWeightSum;
     @FXML private Label subjectPercent;
     @FXML private Label subjectGpa;
     @FXML private Label overallPercent;
     @FXML private Label overallGpa;
 
+    //DB access setup
     private final SubjectDAO subjectDAO = new SqliteSubjectDAO();
     private final AssessmentDAO assessmentDAO = new SqliteAssessmentDAO();
     private final ObservableList<Assessment> rows = FXCollections.observableArrayList();
 
+    //4 subject cap
     private static final int SUBJECT_LIMIT = 4;
 
+    //initialise table + load subjects from SQLite
     @FXML
     private void initialize() {
         colName.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getName()));
@@ -61,15 +73,18 @@ public class GradeController {
 
         refreshSubjects();
 
+        //refresh on any changes to subjects
         subjectCombo.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> loadAssessments(n));
 
         if (!subjectCombo.getItems().isEmpty()) {
             subjectCombo.getSelectionModel().selectFirst();
         } else {
+            //show placeholders if no subjects added
             recalcAll();
         }
     }
 
+    // create a new subject (up to 4) make sure name is valid
     @FXML
     private void onAddSubject() {
         if (subjectDAO.countAll() >= SUBJECT_LIMIT) {
@@ -84,10 +99,12 @@ public class GradeController {
         subjectDAO.add(name);
         subjectNameField.clear();
         refreshSubjects();
-        // Select the newly added subject for immediate data entry.
+        //select added subject
         selectSubjectByName(name);
     }
 
+    //add assessment to selected subject
+    //validate subject name + weight
     @FXML
     private void onAddAssessment() {
         Subject s = subjectCombo.getValue();
@@ -110,6 +127,7 @@ public class GradeController {
         loadAssessments(s);
     }
 
+    //delete selected subject
     @FXML
     private void onDeleteAssessment() {
         Assessment a = assessmentTable.getSelectionModel().getSelectedItem();
@@ -119,6 +137,7 @@ public class GradeController {
         if (s != null) loadAssessments(s);
     }
 
+    //home button
     @FXML
     private void onBackToHome(ActionEvent event) {
         try {
@@ -133,6 +152,7 @@ public class GradeController {
         }
     }
 
+    //reload subjects from DB and update stats
     private void refreshSubjects() {
         List<Subject> list = subjectDAO.listAll();
         subjectCombo.getItems().setAll(list);
@@ -140,6 +160,7 @@ public class GradeController {
         recalcOverall(list);
     }
 
+    //select just added subject by name
     private void selectSubjectByName(String name) {
         for (Subject s : subjectCombo.getItems()) {
             if (s.getName().equalsIgnoreCase(name)) {
@@ -149,6 +170,7 @@ public class GradeController {
         }
     }
 
+    //load assessments for a subject and re-compute stats
     private void loadAssessments(Subject s) {
         rows.clear();
         if (s == null) { recalcAll(); return; }
@@ -157,6 +179,7 @@ public class GradeController {
         recalcOverall(subjectCombo.getItems());
     }
 
+    //recalc subject totals from table rows
     private void recalcSubject() {
         double wSum = rows.stream().mapToDouble(Assessment::getWeight).sum();
         double subjPercent = rows.stream().mapToDouble(Assessment::getContribution).sum();
@@ -166,11 +189,13 @@ public class GradeController {
         subjectPercent.setText(String.format("Subject %%: %.2f%%", subjPercent));
         subjectGpa.setText(String.format("Subject GPA: %d", subjGpa));
 
+        //remind if incomplete input
         if (Math.abs(wSum - 100.0) > 0.0001) {
             subjectWeightSum.setText(subjectWeightSum.getText() + " (not 100%)");
         }
     }
 
+    //recalc overall averages for all subjects
     private void recalcOverall(List<Subject> subjects) {
         if (subjects == null || subjects.isEmpty()) {
             overallPercent.setText("Overall %: --");
@@ -198,6 +223,7 @@ public class GradeController {
         overallGpa.setText(String.format("Overall GPA: %d", ovg));
     }
 
+    //reset subject laves and compute overall (e.g no subjects)
     private void recalcAll() {
         subjectWeightSum.setText("Weight Sum: --");
         subjectPercent.setText("Subject %: --");
@@ -205,6 +231,7 @@ public class GradeController {
         recalcOverall(subjectCombo.getItems());
     }
 
+    //parse a percentage string [0-100]
     private Double parsePercent(String s, String field) {
         try {
             double v = Double.parseDouble(s.trim());
@@ -213,11 +240,13 @@ public class GradeController {
         } catch (Exception e) { warn("Enter a valid " + field + "."); return null; }
     }
 
+    //warning
     private void warn(String msg) {
         Alert a = new Alert(Alert.AlertType.WARNING, msg, ButtonType.OK);
         a.setHeaderText(null);
         a.showAndWait();
     }
 
+    //trim null
     private String safe(String s) { return s == null ? "" : s.trim(); }
 }

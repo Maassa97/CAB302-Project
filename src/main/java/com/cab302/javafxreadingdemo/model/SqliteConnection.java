@@ -4,18 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Singleton class to provide a single SQLite database connection.
- * Ensures only one Connection object exists for the whole application.
- */
+//SQLite setup
+//JDBC connection
+
 public class SqliteConnection {
     // Static instance of the database connection
     private static Connection instance = null;
 
-    /**
-     * Private constructor that establishes the connection.
-     * Called only once when the connection is first requested.
-     */
+
     private SqliteConnection() {
         try {
             // Explicitly load the SQLite JDBC driver
@@ -32,16 +28,13 @@ public class SqliteConnection {
     }
 
 
-    /**
-     * Public accessor for the connection instance.
-     * @return a single shared Connection to the database
-     */
+    // Accessor to create singleton connection
     public static Connection getInstance() {
         if (instance == null) new SqliteConnection();
         return instance;
     }
 
-    // connection check to database
+    // Connection check to database CHECK
     public static void main(String[] args) {
         try {
             Class.forName("org.sqlite.JDBC");

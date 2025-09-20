@@ -1,11 +1,11 @@
 package com.cab302.javafxreadingdemo.model;
 
-public class
-
-
-
-
-Assessment {
+/** Role:
+ * -weight % share of subject
+ * -mark achieved (0-100)
+ * -contribution (mark*weight)/100 used for subject sum %
+ */
+public class Assessment {
     private int id;
     private int subjectId;
     private String name;
@@ -31,6 +31,6 @@ Assessment {
     public void setWeight(double weight) { this.weight = weight; }
     public void setMark(double mark) { this.mark = mark; }
 
-    // weighted mark
+    // weighted mark for subject %
     public double getContribution() { return (mark * weight) / 100.0; }
 }

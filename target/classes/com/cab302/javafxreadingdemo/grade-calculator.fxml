@@ -12,11 +12,13 @@
 
     <children>
 
+        <!--Navigation + page title-->
         <HBox spacing="8">
             <Button text="Home" onAction="#onBackToHome"/>
             <Label text="Grade Calculator"/>
         </HBox>
 
+        <!-- subject create/select -->
         <HBox spacing="8">
             <TextField fx:id="subjectNameField" promptText="New subject name"/>
             <Button fx:id="addSubjectBtn" text="Add Subject" onAction="#onAddSubject"/>
@@ -24,6 +26,7 @@
             <Label fx:id="subjectCountLabel" text="0/4 subjects"/>
         </HBox>
 
+        <!-- Assessment input row -->
         <HBox spacing="8">
             <TextField fx:id="assessNameField"  promptText="Assessment name"/>
             <TextField fx:id="assessWeightField" promptText="Weight %"/>
@@ -32,6 +35,7 @@
             <Button fx:id="deleteAssessmentBtn" text="Delete Selected" onAction="#onDeleteAssessment"/>
         </HBox>
 
+        <!-- Current subject assessment table -->
         <TableView fx:id="assessmentTable" prefHeight="260">
             <columns>
                 <TableColumn fx:id="colName"         text="Assessment"      prefWidth="200"/>
@@ -41,12 +45,14 @@
             </columns>
         </TableView>
 
+        <!-- Subject summary row -->
         <HBox spacing="16">
             <Label fx:id="subjectWeightSum" text="Weight Sum: --"/>
             <Label fx:id="subjectPercent"   text="Subject %: --"/>
             <Label fx:id="subjectGpa"       text="Subject GPA: --"/>
         </HBox>
 
+        <!-- overall subject row -->
         <HBox spacing="16">
             <Label fx:id="overallPercent" text="Overall %: --"/>
             <Label fx:id="overallGpa"     text="Overall GPA: --"/>

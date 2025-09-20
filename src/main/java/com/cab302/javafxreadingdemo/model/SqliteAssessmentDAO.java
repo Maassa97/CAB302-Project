@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// SQlite implementation for AssessmentDAO
 public class SqliteAssessmentDAO implements AssessmentDAO {
 
     private static final String CREATE_TABLE =
@@ -54,7 +55,7 @@ public class SqliteAssessmentDAO implements AssessmentDAO {
         } catch (SQLException e) { e.printStackTrace(); }
         return out;
     }
-
+    // add
     @Override public void add(Assessment a) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(INSERT)) {
             ps.setInt(1, a.getSubjectId());
@@ -64,14 +65,14 @@ public class SqliteAssessmentDAO implements AssessmentDAO {
             ps.executeUpdate();
         } catch (SQLException e) { e.printStackTrace(); }
     }
-
+    // delete assessment
     @Override public void delete(int assessmentId) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(DELETE)) {
             ps.setInt(1, assessmentId);
             ps.executeUpdate();
         } catch (SQLException e) { e.printStackTrace(); }
     }
-
+    // delete subject
     @Override public void deleteBySubject(int subjectId) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(DELETE_BY_SUBJECT)) {
             ps.setInt(1, subjectId);

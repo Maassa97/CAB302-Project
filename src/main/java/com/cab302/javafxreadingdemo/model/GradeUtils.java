@@ -3,6 +3,7 @@ package com.cab302.javafxreadingdemo.model;
 public final class GradeUtils {
     private GradeUtils() {}
 
+    // set percentage for GPA 1-7
     public static int gpaFromPercent(double p) {
         if (p >= 85) return 7;
         if (p >= 75) return 6;
