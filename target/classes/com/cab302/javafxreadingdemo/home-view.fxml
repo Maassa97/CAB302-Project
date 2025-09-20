@@ -26,9 +26,9 @@
                   <font>
                      <Font size="18.0" />
                   </font></ToggleButton>
-               <SplitMenuButton mnemonicParsing="false" text="Menu">
+               <SplitMenuButton fx:id="menuButton" mnemonicParsing="false" text="Menu">
                  <items>
-                   <MenuItem mnemonicParsing="false" text="Log Out" />
+                   <MenuItem mnemonicParsing="false" text="Log Out" onAction="#onLogout" />
                  </items>
                   <opaqueInsets>
                      <Insets />

@@ -1,6 +1,11 @@
 package com.cab302.javafxreadingdemo.model;
 
-public class Assessment {
+public class
+
+
+
+
+Assessment {
     private int id;
     private int subjectId;
     private String name;
