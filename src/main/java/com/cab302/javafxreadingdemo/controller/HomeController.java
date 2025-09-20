@@ -25,7 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import java.io.IOException;
-
+import javafx.scene.control.SplitMenuButton;
 
 
 
@@ -47,24 +47,23 @@ public class HomeController {
 
     private final BadgerClient badger = BadgerClient.fromProperties();
 
-    // Log out handler
-    @FXML
-    //TODO: Add logg out functionality
-    private void onLogout() {
-        try {
-            // Load login view from FXML
-            Parent loginRoot = FXMLLoader.load(
-                    HelloApplication.class.getResource("login-view.fxml")
-            );
+    @FXML private SplitMenuButton menuButton;
 
-            // Replace current scene with login
-            Scene scene = rootStack.getScene();
-            scene.setRoot(loginRoot);
-        } catch (Exception e) {
-            e.printStackTrace();
+    @FXML
+    private void onLogout(ActionEvent e) {
+        //Session.clear();
+        try {
+            FXMLLoader fx = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+            Parent root = fx.load();
+
+            Stage stage = (Stage) menuButton.getScene().getWindow();
+            stage.getScene().setRoot(root);
+            stage.setTitle("Sign In");
+            stage.centerOnScreen();
+        } catch (Exception ex) {
+            ((Stage) menuButton.getScene().getWindow()).close();
         }
     }
-
     // Theme toggles from home-view.fxml
     @FXML private ToggleButton lightBtn;
     @FXML private ToggleButton darkBtn;
@@ -95,6 +94,7 @@ public class HomeController {
         refreshStreak();
     }
 
+
     // Handles calendar opening
     @FXML
     private void onOpenCalendar(ActionEvent e) {
@@ -110,7 +110,7 @@ public class HomeController {
 
     //streak refresh
     private void refreshStreak() {
-        String userId = Session.getCurrentUserId(); // same helper you used before
+        String userId = Session.getCurrentUserId(); // same helper youÍ› used before
         if (userId == null || userId.isBlank()) {
             streakLabel.setText("Streak: --");
             return;
@@ -170,6 +170,7 @@ public class HomeController {
             ex.printStackTrace();
         }
     }
+
 
 }
 
