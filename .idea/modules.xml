@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/To-Do-List-prototype.iml" filepath="$PROJECT_DIR$/To-Do-List-prototype.iml" />
       <module fileurl="file://$PROJECT_DIR$/proxy/badger-proxy/badger-proxy.iml" filepath="$PROJECT_DIR$/proxy/badger-proxy/badger-proxy.iml" />
     </modules>
   </component>

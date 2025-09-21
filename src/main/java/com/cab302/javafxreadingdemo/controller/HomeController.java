@@ -41,13 +41,17 @@ import com.cab302.javafxreadingdemo.badger.BadgerClient;
 
 // Layout of main home-view.fxml elements
 public class HomeController {
-@FXML private StackPane rootStack;
-@FXML private Region    contentRoot;
-@FXML private Label streakLabel;
+    @FXML
+    private StackPane rootStack;
+    @FXML
+    private Region contentRoot;
+    @FXML
+    private Label streakLabel;
 
     private final BadgerClient badger = BadgerClient.fromProperties();
 
-    @FXML private SplitMenuButton menuButton;
+    @FXML
+    private SplitMenuButton menuButton;
 
     @FXML
     private void onLogout(ActionEvent e) {
@@ -64,9 +68,12 @@ public class HomeController {
             ((Stage) menuButton.getScene().getWindow()).close();
         }
     }
+
     // Theme toggles from home-view.fxml
-    @FXML private ToggleButton lightBtn;
-    @FXML private ToggleButton darkBtn;
+    @FXML
+    private ToggleButton lightBtn;
+    @FXML
+    private ToggleButton darkBtn;
 
     // Initialises once FXML is loaded
     @FXML
@@ -90,7 +97,7 @@ public class HomeController {
                         new Dracula().getUserAgentStylesheet()
                 );
             }
-                });
+        });
         refreshStreak();
     }
 
@@ -119,8 +126,12 @@ public class HomeController {
 
         java.util.concurrent.CompletableFuture
                 .supplyAsync(() -> {
-                    try { return badger.getStreak(userId, badgeId); }
-                    catch (Exception e) { e.printStackTrace(); return -1; }
+                    try {
+                        return badger.getStreak(userId, badgeId);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return -1;
+                    }
                 })
                 .thenAccept(streak -> Platform.runLater(() ->
                         streakLabel.setText(streak >= 0 ? ("🔥 " + streak + "-day streak") : "Streak: unavailable")
@@ -152,10 +163,11 @@ public class HomeController {
     }
 
     //placeholder flashcard code. will move to the correct spot eventually
-    @FXML private Button flashcardButton;
     @FXML
-    private void openFlashcard()
-    {
+    private Button flashcardButton;
+
+    @FXML
+    private void openFlashcard() {
         try {
             // load Flashcard scene
             FXMLLoader loader =
@@ -172,5 +184,16 @@ public class HomeController {
     }
 
 
-}
+    @FXML
+    private void opentodolist(ActionEvent e) {
+        try {
+            Parent TodoRoot = FXMLLoader.load(
+                    HelloApplication.class.getResource("Todo-view.fxml")
+            );
+            ((Node) e.getSource()).getScene().setRoot(TodoRoot);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
+}
