@@ -6,6 +6,10 @@ import com.cab302.javafxreadingdemo.model.IGradeDAO;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * This fake simulates a grade DAO but only stores data in memory. It is used for unit testing of grade related
+ * logic without using a real DB.
+ */
 
 public class InMemoryGradeDAO implements IGradeDAO {
     private final Map<Integer, Grade> store = new LinkedHashMap<>();

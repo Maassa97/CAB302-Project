@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.cab302.javafxreadingdemo.model.fakes.InMemoryGradeDAO;
 
-class GradeDAOTest {
+class GradeTestInMemoryDAO {
 
     private IGradeDAO dao;
 
