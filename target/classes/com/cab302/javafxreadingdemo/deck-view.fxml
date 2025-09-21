@@ -23,17 +23,20 @@
             </top>
             <center>
                 <HBox fx:id="containerHBox" alignment="CENTER" spacing="20">
-                    <VBox maxWidth="380" maxHeight="450" spacing="80" style="-fx-border-color: white; -fx-border-width: 2;">
+                    <VBox maxWidth="400" maxHeight="500" spacing="20" style="-fx-border-color: white; -fx-border-width: 2;">
                         <GridPane hgap="10" vgap="20">
                             <columnConstraints>
-                                <ColumnConstraints halignment="CENTER" minWidth="90"/>
+                                <ColumnConstraints halignment="CENTER"/>
                                 <ColumnConstraints hgrow="ALWAYS"/>
                             </columnConstraints>
-
                             <Label text="Deck Name:" style="-fx-font-size: 20" GridPane.rowIndex="1"/>
-                            <TextField fx:id="deckName" promptText="..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
+                            <TextField fx:id="deckName" promptText="Add Deck Name..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                         </GridPane>
+                        <TableView fx:id="cardTable">
+                            <columns>
+                                <TableColumn fx:id="cardTitle" text="Name" prefWidth="400"/>
+                            </columns>
+                        </TableView>
                     </VBox>
                 </HBox>
             </center>

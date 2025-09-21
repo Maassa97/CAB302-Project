@@ -1,21 +1,19 @@
 package com.cab302.javafxreadingdemo.controller.Flashcards;
 
 import com.cab302.javafxreadingdemo.HelloApplication;
+import com.cab302.javafxreadingdemo.model.Grade;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Priority;
-import java.util.ArrayList;
-import java.util.List;
 
 // Deck creator controller class
 public class DeckController {
@@ -25,7 +23,7 @@ public class DeckController {
     @FXML private Label errorLabel;
     @FXML private HBox containerHBox;
     @FXML private Button addCardButon;
-    @FXML private Button finishCardButton;
+    @FXML private Button finishCardButton;;
 
     boolean cardOpen = false;
 
@@ -62,14 +60,20 @@ public class DeckController {
             gridPane.getColumnConstraints().addAll(column1, column2);
 
             // add new label and text box to the gridpane
-            Label label = new Label("New Card:");
-            label.setStyle("-fx-font-size: 20; -fx-alignment: center;");
-            TextField textField = new TextField();
-            textField.setPromptText("Card Title...");
-            textField.setStyle("-fx-alignment: center;");
+            TextField cardTitle = new TextField();
+            cardTitle.setPromptText("Add Card Title...");
+            cardTitle.setStyle("-fx-alignment: center; -fx-font-size: 15;");
+            cardTitle.setMinWidth(310);
 
-            gridPane.add(label, 0, 1);
-            gridPane.add(textField, 1, 1);
+            TextArea cardBody = new TextArea();
+            cardBody.setPromptText("Add Card Text...");
+            cardBody.setStyle("-fx-alignment: center; -fx-font-size: 15;");
+            cardBody.setWrapText(true);
+            cardBody.setPrefHeight(350);
+            cardBody.setMinWidth(310);
+
+            gridPane.add(cardTitle, 0, 1);
+            gridPane.add(cardBody, 0, 2);
 
             // add new gridpane to the vbox
             newVBox.getChildren().add(gridPane);
