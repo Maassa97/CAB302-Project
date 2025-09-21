@@ -6,6 +6,11 @@ import com.cab302.javafxreadingdemo.model.UserDAO;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * This fake simulates a user DAO but only stores data in memory. It is used for unit testing of user related
+ * logic without using a real DB.
+ */
+
 public class InMemoryUserDAO implements UserDAO {
 
     // Keyed by unique email (mirrors DB UNIQUE constraint)
