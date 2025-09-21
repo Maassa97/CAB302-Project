@@ -12,21 +12,27 @@
             <Insets top="20" right="20" bottom="20" left="20"/>
         </padding>
     </VBox>
-    <center>
-        <StackPane alignment="CENTER_LEFT">
+    <top>
+        <StackPane alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
             <Label fx:id="dateLabel"
                    style="-fx-background-color: black; -fx-text-fill: white;
                           -fx-font-size: 16px; -fx-padding: 10px;
                           -fx-border-color: #34495e; -fx-border-width: 1px;" />
         </StackPane>
-    </center>
-    <bottom>
-        <VBox fx:id="rootVBox" alignment="BOTTOM_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml">
+    </top>
+    <left>
+        <VBox fx:id="rootVBox" alignment="CENTER_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml">
             <TextField fx:id="inputTextField" promptText="Enter text here..." maxWidth="150" />
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
 
             <Button text="Add" onAction="#handleAddText" />
         </VBox>
-    </bottom>
+    </left>
     <right>
         <VBox fx:id="buttonListVBox" alignment="CENTER_RIGHT" spacing="10.0">
             <padding>
