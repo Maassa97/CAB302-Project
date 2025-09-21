@@ -5,6 +5,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <StackPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -18,6 +19,9 @@
                 <VBox alignment="TOP_CENTER" styleClass="title">
                     <Label text="Create New Deck" style="-fx-font-size: 30;"/>
                 </VBox>
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Button text="Home" onAction="#onBackToHome"/>
+                </HBox>
             </top>
             <center>
                 <VBox maxWidth="360" maxHeight="400" spacing="80" style="-fx-border-color: white; -fx-border-width: 2;">
@@ -29,8 +33,10 @@
 
                         <Label text="Deck Name:" style="-fx-font-size: 16" GridPane.rowIndex="1"/>
                         <TextField fx:id="deckName" promptText="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-
+                        <HBox alignment="BOTTOM_CENTER">
+                            <Button text="New Card" onAction="#newCard"/>
+                            <Button text="Save Deck" onAction="#finishDeck"/>
+                        </HBox>
 
                     </GridPane>
                 </VBox>

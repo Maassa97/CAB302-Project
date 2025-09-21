@@ -1,0 +1,8 @@
+com\cab302\javafxreadingdemo\model\Assessment.class
+com\cab302\javafxreadingdemo\controller\Todocontroller.class
+com\cab302\javafxreadingdemo\model\Subject.class
+com\cab302\javafxreadingdemo\model\SqliteAssessmentDAO.class
+com\cab302\javafxreadingdemo\model\GradeUtils.class
+com\cab302\javafxreadingdemo\model\SqliteSubjectDAO.class
+com\cab302\javafxreadingdemo\model\SubjectDAO.class
+com\cab302\javafxreadingdemo\model\AssessmentDAO.class

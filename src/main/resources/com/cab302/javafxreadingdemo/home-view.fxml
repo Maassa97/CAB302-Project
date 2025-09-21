@@ -88,13 +88,17 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0" text="Flashcards" HBox.hgrow="SOMETIMES">
+                        <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0"
+                          text="Flashcards"
+                          onAction="#openFlashcard"
+                          HBox.hgrow="SOMETIMES">
                            <font>
                               <Font size="30.0" />
                            </font>
                            <HBox.margin>
                               <Insets bottom="10.0" />
-                           </HBox.margin></Button>
+                           </HBox.margin>
+                        </Button>
                         <Label minWidth="400.0" text="Need help memorising for an upcoming test? Use these flashcards and you'll ace it! " wrapText="true">
                            <padding>
                               <Insets left="20.0" />

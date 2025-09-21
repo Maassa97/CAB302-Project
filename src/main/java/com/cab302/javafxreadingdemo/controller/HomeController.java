@@ -162,22 +162,14 @@ public class HomeController {
         }
     }
 
-    //placeholder flashcard code. will move to the correct spot eventually
-    @FXML
-    private Button flashcardButton;
 
     @FXML
-    private void openFlashcard() {
+    private void openFlashcard(ActionEvent e) {
         try {
-            // load Flashcard scene
-            FXMLLoader loader =
-                    new FXMLLoader(HelloApplication.class.getResource("flashcard-view.fxml"));
-            Parent root = loader.load();
-
-            // replace current scene with Flashcard scene
-            Stage stage = (Stage) flashcardButton.getScene().getWindow();
-            stage.getScene().setRoot(root);
-
+            Parent TodoRoot = FXMLLoader.load(
+                    HelloApplication.class.getResource("flashcard-view.fxml")
+            );
+            ((Node) e.getSource()).getScene().setRoot(TodoRoot);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -4,6 +4,7 @@ import com.cab302.javafxreadingdemo.HelloApplication;
 import com.cab302.javafxreadingdemo.model.Grade;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -85,7 +86,7 @@ public class DeckController {
         }
     }
 
-    // finish current open card
+
     @FXML
     private void finishCard() {
         if (containerHBox != null && containerHBox.getChildren().size() > 1) {
@@ -94,7 +95,7 @@ public class DeckController {
         cardOpen = false;
     }
 
-    // OnClick finish deck button
+
     public void finishDeck()
     {
         try
@@ -118,6 +119,22 @@ public class DeckController {
         catch (IOException e)
         {
             errorLabel.setText("Could not Close Deck Editor.");
+            e.printStackTrace();
+        }
+    }
+
+    // home screen back button
+    @FXML
+    private void onBackToHome(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    HelloApplication.class.getResource("/com/cab302/javafxreadingdemo/home-view.fxml")
+            );
+            Parent homeRoot = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(homeRoot);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
