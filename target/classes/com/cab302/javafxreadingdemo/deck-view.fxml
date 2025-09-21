@@ -7,34 +7,44 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.cab302.javafxreadingdemo.controller.Flashcards.DeckController"
-            prefHeight="420.0" prefWidth="520.0"
-            styleClass="root">
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.cab302.javafxreadingdemo.controller.Flashcards.DeckController"
+           prefHeight="420.0" prefWidth="1000.0"
+           styleClass="root">
 
     <children>
-        <BorderPane maxWidth="380" maxHeight="500" BorderPane.alignment="CENTER">
+        <BorderPane maxWidth="800" maxHeight="700" StackPane.alignment="CENTER">
             <top>
-                <VBox alignment="TOP_CENTER" styleClass="title">
-                    <Label text="Create New Deck" style="-fx-font-size: 30;"/>
+                <VBox alignment="TOP_CENTER">
+                    <Label text="Create New Deck" style="-fx-font-size: 42;"/>
+                    <Button text="Add New Card" fx:id="newCardButton" onAction="#newCard"/>
+                    <Button text="Finish New Card" fx:id="finishCardButton" onAction="#finishCard"/>
                 </VBox>
             </top>
             <center>
-                <VBox maxWidth="360" maxHeight="400" spacing="80" style="-fx-border-color: white; -fx-border-width: 2;">
-                    <GridPane hgap="10" vgap="20">
-                        <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" minWidth="90"/>
-                            <ColumnConstraints hgrow="ALWAYS"/>
-                        </columnConstraints>
-
-                        <Label text="Deck Name:" style="-fx-font-size: 16" GridPane.rowIndex="1"/>
-                        <TextField fx:id="deckName" promptText="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-
-
-                    </GridPane>
-                </VBox>
+                <HBox fx:id="containerHBox" alignment="CENTER" spacing="20">
+                    <VBox maxWidth="400" maxHeight="500" spacing="20" style="-fx-border-color: white; -fx-border-width: 2;">
+                        <GridPane hgap="10" vgap="20">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="CENTER"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+                            <Label text="Deck Name:" style="-fx-font-size: 20" GridPane.rowIndex="1"/>
+                            <TextField fx:id="deckName" promptText="Add Deck Name..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        </GridPane>
+                        <TableView fx:id="cardTable">
+                            <columns>
+                                <TableColumn fx:id="cardTitle" text="Name" prefWidth="400"/>
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </HBox>
             </center>
+            <bottom>
+                <VBox StackPane.alignment="CENTER" alignment="CENTER">
+                    <Button text="Back" style="-fx-font-size: 20" prefWidth="70" fx:id="finishDeckButton" onAction="#finishDeck" alignment="CENTER"/>
+                </VBox>
+            </bottom>
         </BorderPane>
     </children>
 
