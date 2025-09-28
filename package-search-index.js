@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.cab302.javafxreadingdemo","l":"com.cab302.javafxreadingdemo"},{"m":"com.cab302.javafxreadingdemo","l":"com.cab302.javafxreadingdemo.controller"},{"m":"com.cab302.javafxreadingdemo","l":"com.cab302.javafxreadingdemo.controller.Flashcards"}];updateSearchResults();
