@@ -65,7 +65,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                          <Button minHeight="80.0" minWidth="300.0" onAction="#onOpenCalendar" prefHeight="40.0" text="Calendar" HBox.hgrow="SOMETIMES">
+                          <Button minHeight="80.0" minWidth="300.0" prefHeight="40.0" text="Calendar" HBox.hgrow="SOMETIMES">
                            <font>
                               <Font size="30.0" />
                            </font>
