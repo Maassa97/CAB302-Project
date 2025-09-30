@@ -102,18 +102,7 @@ public class HomeController {
     }
 
 
-    // Handles calendar opening
-    @FXML
-    private void onOpenCalendar(ActionEvent e) {
-        try {
-            Parent calendarRoot = FXMLLoader.load(
-                    getClass().getResource("/com/cab302/javafxreadingdemo/calendar-view.fxml")
-            );
-            ((Node) e.getSource()).getScene().setRoot(calendarRoot);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+
 
     //streak refresh
     private void refreshStreak() {
