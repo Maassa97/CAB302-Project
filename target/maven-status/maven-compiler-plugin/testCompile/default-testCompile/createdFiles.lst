@@ -1,0 +1,5 @@
+com\cab302\javafxreadingdemo\model\fakes\InMemoryUserDAO.class
+com\cab302\javafxreadingdemo\model\GradeDAOTest.class
+com\cab302\javafxreadingdemo\model\UserDAOTest.class
+com\cab302\javafxreadingdemo\model\PasswordHashTest.class
+com\cab302\javafxreadingdemo\model\fakes\InMemoryGradeDAO.class
