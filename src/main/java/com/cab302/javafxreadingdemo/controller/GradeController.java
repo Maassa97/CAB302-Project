@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import com.cab302.javafxreadingdemo.ui.UiMessages;
 
 import java.io.IOException;
 import java.util.List;
@@ -95,12 +96,12 @@ public class GradeController {
     @FXML
     private void onAddSubject() {
         if (subjectDAO.countAll() >= SUBJECT_LIMIT) {
-            warn("Subject limit reached (4).");
+            UiMessages.warn("Subject limit reached (4).");
             return;
         }
         String name = safe(subjectNameField.getText());
         if (name.isBlank()) {
-            warn("Enter a subject name.");
+            UiMessages.warn("Enter a subject name.");
             return;
         }
         subjectDAO.add(name);
@@ -118,10 +119,10 @@ public class GradeController {
     @FXML
     private void onAddAssessment() {
         Subject s = subjectCombo.getValue();
-        if (s == null) { warn("Create/select a subject first."); return; }
+        if (s == null) { UiMessages.warn("Create/select a subject first."); return; }
 
         String n = safe(assessNameField.getText());
-        if (n.isBlank()) { warn("Assessment name required."); return; }
+        if (n.isBlank()) { UiMessages.warn("Assessment name required."); return; }
 
         Double w = parsePercent(assessWeightField.getText(), "Weight");
         if (w == null) return;
@@ -144,7 +145,7 @@ public class GradeController {
     @FXML
     private void onDeleteAssessment() {
         Assessment a = assessmentTable.getSelectionModel().getSelectedItem();
-        if (a == null) { warn("Select an assessment to delete."); return; }
+        if (a == null) { UiMessages.warn("Select an assessment to delete."); return; }
         assessmentDAO.delete(a.getId());
         Subject s = subjectCombo.getValue();
         if (s != null) loadAssessments(s);
@@ -164,7 +165,7 @@ public class GradeController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.getScene().setRoot(homeRoot);
         } catch (IOException e) {
-            e.printStackTrace();
+            UiMessages.error("Failed to open Home screen.");
         }
     }
 
@@ -272,9 +273,9 @@ public class GradeController {
     private Double parsePercent(String s, String field) {
         try {
             double v = Double.parseDouble(s.trim());
-            if (v < 0 || v > 100) { warn(field + " must be 0–100."); return null; }
+            if (v < 0 || v > 100) { UiMessages.warn(field + " must be 0–100."); return null; }
             return v;
-        } catch (Exception e) { warn("Enter a valid " + field + "."); return null; }
+        } catch (Exception e) { UiMessages.warn("Enter a valid " + field + "."); return null; }
     }
 
     /** Warning Message

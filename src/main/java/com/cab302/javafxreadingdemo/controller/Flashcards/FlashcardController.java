@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
+import com.cab302.javafxreadingdemo.ui.UiMessages;
 
     // Flashcards main menu controller
 
@@ -37,8 +38,7 @@ public class FlashcardController
         //Error handling
         catch (IOException e)
         {
-            errorLabel.setText("Could not open New Deck screen.");
-            e.printStackTrace();
+            UiMessages.error("Could not open New Deck screen.");
         }
     }
 
@@ -61,7 +61,7 @@ public class FlashcardController
         //error handling
         catch (IOException e)
         {
-            errorLabel.setText("Could not open Home Menu Screen.");
+            UiMessages.error("Could not open Home Menu Screen.");
             e.printStackTrace();
         }
     }

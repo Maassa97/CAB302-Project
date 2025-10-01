@@ -1,6 +1,8 @@
-C:\Users\fhten\IdeaProjects\CAB302-Project\src\test\java\com\cab302\javafxreadingdemo\model\fakes\InMemoryGradeDAO.java
-C:\Users\fhten\IdeaProjects\CAB302-Project\src\test\java\com\cab302\javafxreadingdemo\model\fakes\InMemoryUserDAO.java
-C:\Users\fhten\IdeaProjects\CAB302-Project\src\test\java\com\cab302\javafxreadingdemo\model\GradeDAOTest.java
-C:\Users\fhten\IdeaProjects\CAB302-Project\src\test\java\com\cab302\javafxreadingdemo\model\PasswordHashTest.java
-C:\Users\fhten\IdeaProjects\CAB302-Project\src\test\java\com\cab302\javafxreadingdemo\model\SqliteUserDAOTest.java
-C:\Users\fhten\IdeaProjects\CAB302-Project\src\test\java\com\cab302\javafxreadingdemo\model\UserDAOTest.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/GradeDAOTestRealDB.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/GradeTestInMemoryDAO.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/PasswordHashTest.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/SqliteUserDAOTest.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/UserDAOTestRealDB.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/UserTestInMemoryDAO.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/fakes/InMemoryGradeDAO.java
+/Users/frasertennent/IdeaProjects/CAB302-Project/src/test/java/com/cab302/javafxreadingdemo/model/fakes/InMemoryUserDAO.java

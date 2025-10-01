@@ -1,1 +1,0 @@
-moduleSearchIndex = [{"l":"com.cab302.javafxreadingdemo"}];updateSearchResults();

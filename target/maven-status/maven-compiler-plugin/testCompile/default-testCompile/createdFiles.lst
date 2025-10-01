@@ -1,5 +1,7 @@
-com\cab302\javafxreadingdemo\model\fakes\InMemoryUserDAO.class
-com\cab302\javafxreadingdemo\model\GradeDAOTest.class
-com\cab302\javafxreadingdemo\model\UserDAOTest.class
-com\cab302\javafxreadingdemo\model\PasswordHashTest.class
-com\cab302\javafxreadingdemo\model\fakes\InMemoryGradeDAO.class
+com/cab302/javafxreadingdemo/model/GradeDAOTestRealDB.class
+com/cab302/javafxreadingdemo/model/fakes/InMemoryUserDAO.class
+com/cab302/javafxreadingdemo/model/PasswordHashTest.class
+com/cab302/javafxreadingdemo/model/UserTestInMemoryDAO.class
+com/cab302/javafxreadingdemo/model/UserDAOTestRealDB.class
+com/cab302/javafxreadingdemo/model/GradeTestInMemoryDAO.class
+com/cab302/javafxreadingdemo/model/fakes/InMemoryGradeDAO.class
