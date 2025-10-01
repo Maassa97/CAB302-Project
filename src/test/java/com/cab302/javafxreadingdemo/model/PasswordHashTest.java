@@ -56,5 +56,19 @@ public class PasswordHashTest {
         String bad = "$2balkjeklfawjelkfkjawejf";
         assertThrows(IllegalArgumentException.class, () -> BCrypt.checkpw(raw, bad));
     }
+    @Test
+    void differentPasswordsProduceDifferentHashes() {
+        String h1 = org.mindrot.jbcrypt.BCrypt.hashpw("alpha", org.mindrot.jbcrypt.BCrypt.gensalt(10));
+        String h2 = org.mindrot.jbcrypt.BCrypt.hashpw("bravo", org.mindrot.jbcrypt.BCrypt.gensalt(10));
+        assertNotEquals(h1, h2);
+    }
+
+    @Test
+    void verifyIsCaseSensitive() {
+        String raw = "PassWORD123";
+        String hash = org.mindrot.jbcrypt.BCrypt.hashpw(raw, org.mindrot.jbcrypt.BCrypt.gensalt(10));
+        assertTrue(org.mindrot.jbcrypt.BCrypt.checkpw("PassWORD123", hash));
+        assertFalse(org.mindrot.jbcrypt.BCrypt.checkpw("password123", hash)); // different case
+    }
 }
 
