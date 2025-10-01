@@ -2,7 +2,9 @@ package com.cab302.javafxreadingdemo.model;
 
 import java.util.List;
 
-//user contract
+/** User DB contract
+ *
+ */
 public interface UserDAO {
     void addUser(User user);
     User getUserByEmail(String email);

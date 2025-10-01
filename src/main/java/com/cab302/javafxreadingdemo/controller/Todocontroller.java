@@ -75,7 +75,10 @@ public class Todocontroller {
         }
     }
 
-    // home screen back button
+    /** home screen back button
+     *
+     * @param event action for returning to home-screen view
+     */
     @FXML
     private void onBackToHome(javafx.event.ActionEvent event) {
         try {

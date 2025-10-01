@@ -1,5 +1,8 @@
 package com.cab302.javafxreadingdemo.model;
 
+/** Grade utils for adjustments 0-100 -> GPA
+ *
+ */
 public final class GradeUtils {
     private GradeUtils() {}
 

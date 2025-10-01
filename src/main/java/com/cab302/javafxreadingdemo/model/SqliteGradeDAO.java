@@ -4,7 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//Sqlite implementation
+/** Sqlite implementation
+ *
+ */
 public class SqliteGradeDAO implements IGradeDAO {
 
     //create 'Grades' table
@@ -29,7 +31,10 @@ public class SqliteGradeDAO implements IGradeDAO {
         }
     }
 
-    //add grade to DB
+    /** Add grade to DB
+     *
+     * @param grade grade to be added
+     */
     @Override
     public void addGrade(Grade grade) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(INSERT)) {
@@ -39,7 +44,11 @@ public class SqliteGradeDAO implements IGradeDAO {
             e.printStackTrace();
         }
     }
-    //delete grade from DB
+
+    /** Delete grade from DB
+     *
+     * @param id identify grade to delete
+     */
     @Override
     public void deleteGrade(int id) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(DELETE)) {
@@ -49,7 +58,11 @@ public class SqliteGradeDAO implements IGradeDAO {
             e.printStackTrace();
         }
     }
-    //retrieves all grades in DB
+
+    /** Tetrieves all grades in DB
+     *
+     * @return list all grades
+     */
     @Override
     public List<Grade> getAllGrades() {
         List<Grade> grades = new ArrayList<>();
@@ -65,7 +78,11 @@ public class SqliteGradeDAO implements IGradeDAO {
         }
         return grades;
     }
-    //calculate averages
+
+    /** Calculate averages
+     *
+     * @return averages for all grades
+     */
     @Override
     public double calculateAverage() {
         List<Grade> grades = getAllGrades();

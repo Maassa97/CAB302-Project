@@ -62,7 +62,11 @@ public class GradeController {
     //4 subject cap
     private static final int SUBJECT_LIMIT = 4;
 
-    //initialise table + load subjects from SQLite
+    /** Initialise table + load subjects from SQLite
+     *
+     * Implemented listener to refresh assessments when selected subject changes
+     */
+
     @FXML
     private void initialize() {
         colName.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().getName()));
@@ -84,7 +88,10 @@ public class GradeController {
         }
     }
 
-    // create a new subject (up to 4) make sure name is valid
+    /** Create a new subject (up to 4) make sure name is valid
+     *
+     * Checks for invalid input/if limit reached
+     */
     @FXML
     private void onAddSubject() {
         if (subjectDAO.countAll() >= SUBJECT_LIMIT) {
@@ -103,8 +110,11 @@ public class GradeController {
         selectSubjectByName(name);
     }
 
-    //add assessment to selected subject
-    //validate subject name + weight
+    /** Add an assessment to selected subject
+     *
+     *     Validates subject name + weight (0-100)
+     */
+
     @FXML
     private void onAddAssessment() {
         Subject s = subjectCombo.getValue();
@@ -127,7 +137,10 @@ public class GradeController {
         loadAssessments(s);
     }
 
-    //delete selected subject
+    /** Delete selected subject from table + DB storeage
+     *
+     * Validates if something is selected
+     */
     @FXML
     private void onDeleteAssessment() {
         Assessment a = assessmentTable.getSelectionModel().getSelectedItem();
@@ -137,7 +150,10 @@ public class GradeController {
         if (s != null) loadAssessments(s);
     }
 
-    //home button
+    /** Navigates back to Home
+     *
+     * @param event action event from "Home" button
+     */
     @FXML
     private void onBackToHome(ActionEvent event) {
         try {
@@ -152,7 +168,9 @@ public class GradeController {
         }
     }
 
-    //reload subjects from DB and update stats
+    /** Reloads subjects from DB and updates overall stats
+     *
+     */
     private void refreshSubjects() {
         List<Subject> list = subjectDAO.listAll();
         subjectCombo.getItems().setAll(list);
@@ -160,7 +178,10 @@ public class GradeController {
         recalcOverall(list);
     }
 
-    //select just added subject by name
+    /** selects just added subject by name
+     *
+     * @param name subject name to select.
+     */
     private void selectSubjectByName(String name) {
         for (Subject s : subjectCombo.getItems()) {
             if (s.getName().equalsIgnoreCase(name)) {
@@ -170,7 +191,10 @@ public class GradeController {
         }
     }
 
-    //load assessments for a subject and re-compute stats
+    /** Load assessments for a subject and re-compute stats
+     *
+     * @param s subjects whose assessments should be displayed
+     */
     private void loadAssessments(Subject s) {
         rows.clear();
         if (s == null) { recalcAll(); return; }
@@ -179,7 +203,10 @@ public class GradeController {
         recalcOverall(subjectCombo.getItems());
     }
 
-    //recalc subject totals from table rows
+    /** Recalc subject totals from table rows
+     *
+     * Informs user if weight doesn't = 100%
+     */
     private void recalcSubject() {
         double wSum = rows.stream().mapToDouble(Assessment::getWeight).sum();
         double subjPercent = rows.stream().mapToDouble(Assessment::getContribution).sum();
@@ -195,7 +222,10 @@ public class GradeController {
         }
     }
 
-    //recalc overall averages for all subjects
+    /** Recalc overall averages for all subjects
+     *
+     * @param subjects list of subjects. Sets stats to placeholder if null.
+     */
     private void recalcOverall(List<Subject> subjects) {
         if (subjects == null || subjects.isEmpty()) {
             overallPercent.setText("Overall %: --");
@@ -223,7 +253,9 @@ public class GradeController {
         overallGpa.setText(String.format("Overall GPA: %d", ovg));
     }
 
-    //reset subject laves and compute overall (e.g no subjects)
+    /** Reset subject labels and compute overall value (e.g no subjects)
+     *
+     */
     private void recalcAll() {
         subjectWeightSum.setText("Weight Sum: --");
         subjectPercent.setText("Subject %: --");
@@ -231,7 +263,12 @@ public class GradeController {
         recalcOverall(subjectCombo.getItems());
     }
 
-    //parse a percentage string [0-100]
+    /** Parse a percentage string [0-100]
+     *
+     * @param s input string
+     * @param field field label used in user warning
+     * @return parsed value (0-100) or null (placeholders)
+     */
     private Double parsePercent(String s, String field) {
         try {
             double v = Double.parseDouble(s.trim());
@@ -240,13 +277,20 @@ public class GradeController {
         } catch (Exception e) { warn("Enter a valid " + field + "."); return null; }
     }
 
-    //warning
+    /** Warning Message
+     *
+     * @param msg message to display.
+     */
     private void warn(String msg) {
         Alert a = new Alert(Alert.AlertType.WARNING, msg, ButtonType.OK);
         a.setHeaderText(null);
         a.showAndWait();
     }
 
-    //trim null
+    /** Return timmed string/null
+     *
+     * @param s string
+     * @return trimmed string (if not null)
+     */
     private String safe(String s) { return s == null ? "" : s.trim(); }
 }

@@ -1,7 +1,10 @@
 package com.cab302.javafxreadingdemo.model;
 
 import java.util.List;
-//contract for GPA
+
+/** Contract for GPA
+ *
+ */
 public interface IGradeDAO {
     //delete/add/get/calc
     void addGrade(Grade grade);

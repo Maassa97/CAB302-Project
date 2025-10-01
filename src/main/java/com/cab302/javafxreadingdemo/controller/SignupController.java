@@ -91,7 +91,9 @@ public class SignupController {
         }
     }
 
-    // Handles back to sign in upon success
+    /** Handles back to sign in upon success
+     *
+     */
     @FXML
     private void onBackToSignIn() {
         try {
@@ -101,7 +103,11 @@ public class SignupController {
         }
     }
 
-    // Navigates between screens
+    /** Navigates between FXML screens
+     *
+     * @param fxmlName path to relevant FXML
+     * @throws IOException for error handling
+     */
     private void navigate(String fxmlName) throws IOException {
         FXMLLoader loader = new FXMLLoader(
                 // error handling
@@ -113,12 +119,19 @@ public class SignupController {
         stage.getScene().setRoot(root);
     }
 
-    // display error (remove after prototype to dedicated error file)
+    /** display error (remove after prototype to dedicated error file)
+     *
+     * @param msg for error
+     */
     private void showError(String msg) {
         errorLabel.setText(msg == null ? "" : msg);
     }
 
-    // returns empty string if null/trims white space
+    /** returns empty string if null/trims white space
+     *
+     * @param s input
+     * @return empty if null
+     */
     private String safe(String s) {
         return s == null ? "" : s.trim();
     }

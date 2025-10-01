@@ -2,7 +2,9 @@ package com.cab302.javafxreadingdemo.model;
 
 import java.util.List;
 
-//subject contract
+/** Subject contract
+ *
+ */
 public interface SubjectDAO {
     //list
     List<Subject> listAll();

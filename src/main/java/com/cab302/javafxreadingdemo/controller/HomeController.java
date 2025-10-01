@@ -35,8 +35,9 @@ import com.cab302.javafxreadingdemo.badger.BadgerClient;
  * Controller to handle home screen of application
  *
  * Role:
- * - Provide main access point to application functions
- *
+ * - Provide main access point to application functions (grade calc, flash cards, to-do
+ * - Theme switch (light/dark modes)
+ * - Implementing badger user streaks
  */
 
 // Layout of main home-view.fxml elements
@@ -53,6 +54,10 @@ public class HomeController {
     @FXML
     private SplitMenuButton menuButton;
 
+    /** Logs out current user and navigates to sign-in view.
+     *
+     * @param e action event the logout button.
+     */
     @FXML
     private void onLogout(ActionEvent e) {
         //Session.clear();
@@ -75,7 +80,9 @@ public class HomeController {
     @FXML
     private ToggleButton darkBtn;
 
-    // Initialises once FXML is loaded
+    /** Initialises UI bindings after loading FXML
+     *
+     */
     @FXML
     private void initialize() {
         // Only one button active at once:
@@ -101,8 +108,10 @@ public class HomeController {
         refreshStreak();
     }
 
-
-
+    /** Refreshes the user's streak label w/ BadgerClient
+     * - shows user streak/placeholder (if not logged in)
+     *
+     */
 
     //streak refresh
     private void refreshStreak() {
@@ -127,7 +136,9 @@ public class HomeController {
                 ));
     }
 
-    //read badgerID for user
+    /** Reads badgerID for user
+
+     */
     private String readBadgeId() {
         try (var in = getClass().getResourceAsStream("/app.properties")) {
             var p = new java.util.Properties();
@@ -138,7 +149,9 @@ public class HomeController {
         }
     }
 
-    //open grade calculator
+    /** Opens grade calculator screen
+     * @param e action event from the Grade Calculator control.
+     */
     @FXML
     private void onOpenGradeCalculator(ActionEvent e) {
         try {
@@ -151,7 +164,10 @@ public class HomeController {
         }
     }
 
-
+    /** Opens Flashcards screen
+     *
+     * @param e action event from the Flashcards control.
+     */
     @FXML
     private void openFlashcard(ActionEvent e) {
         try {
@@ -164,6 +180,10 @@ public class HomeController {
         }
     }
 
+    /** Opens To-do List view.
+     *
+     * @param e action event from To-Do control
+     */
 
     @FXML
     private void opentodolist(ActionEvent e) {

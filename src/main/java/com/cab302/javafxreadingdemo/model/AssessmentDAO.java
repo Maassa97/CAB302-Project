@@ -2,7 +2,9 @@ package com.cab302.javafxreadingdemo.model;
 
 import java.util.List;
 
-//data access contract for assessment
+/** Data access contract for assessment
+ *
+ */
 public interface AssessmentDAO {
     //list all assessments for subject
     List<Assessment> listBySubject(int subjectId);

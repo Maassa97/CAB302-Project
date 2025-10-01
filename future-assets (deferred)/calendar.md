@@ -140,3 +140,8 @@ home-view.fxml:
                   </HBox>
                </children>
             </VBox>
+
+    // CalendarFX (official JPMS module)
+    requires com.calendarfx.view;
+    // ControlsFX (CalendarFX dependent)
+    requires org.controlsfx.controls;

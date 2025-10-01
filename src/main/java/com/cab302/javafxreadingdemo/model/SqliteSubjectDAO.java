@@ -4,7 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//SQLite implementation of SubjectDAO
+/** SQLite implementation of SubjectDAO
+ *
+ */
 public class SqliteSubjectDAO implements SubjectDAO {
 
     //SQL statements:

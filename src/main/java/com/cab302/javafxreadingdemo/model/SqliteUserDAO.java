@@ -38,7 +38,10 @@ public class SqliteUserDAO implements UserDAO {
     }
 
 
-    //Insert a new user into the database.
+    /** Insert a new user into the database.
+     *
+     * @param user to be inserted
+     */
 
     @Override
     public void addUser(User user) {
@@ -76,7 +79,10 @@ public class SqliteUserDAO implements UserDAO {
         return null; // not found
     }
 
-    //Retrieve all users in the database.
+    /** Retrieve all users in the database.
+     *
+     * @return list of all users
+     */
 
     @Override
     public List<User> getAllUsers() {

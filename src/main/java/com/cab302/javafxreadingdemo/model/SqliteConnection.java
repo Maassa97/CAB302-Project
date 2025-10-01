@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//SQLite setup
-//JDBC connection
+/** SQLite setup
+ * JDBC connection
+ */
 
 public class SqliteConnection {
     // Static instance of the database connection
@@ -28,13 +29,19 @@ public class SqliteConnection {
     }
 
 
-    // Accessor to create singleton connection
+    /** Accessor to create singleton connection
+     *
+     * @return connection
+     */
     public static Connection getInstance() {
         if (instance == null) new SqliteConnection();
         return instance;
     }
 
-    // Connection check to database CHECK
+    /** Connection check to database CHECK
+     *
+     * @param args check for connection
+     */
     public static void main(String[] args) {
         try {
             Class.forName("org.sqlite.JDBC");

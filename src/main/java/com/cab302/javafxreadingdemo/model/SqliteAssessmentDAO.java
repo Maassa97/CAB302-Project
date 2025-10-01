@@ -4,7 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// SQlite implementation for AssessmentDAO
+/** SQlite implementation for AssessmentDAO
+ *
+ */
 public class SqliteAssessmentDAO implements AssessmentDAO {
 
     private static final String CREATE_TABLE =
@@ -37,6 +39,11 @@ public class SqliteAssessmentDAO implements AssessmentDAO {
         }
     }
 
+    /** List assessments
+     *
+     * @param subjectId track subject by ID
+     * @return list of subjects
+     */
     @Override public List<Assessment> listBySubject(int subjectId) {
         List<Assessment> out = new ArrayList<>();
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(SELECT_BY_SUBJECT)) {
@@ -55,7 +62,11 @@ public class SqliteAssessmentDAO implements AssessmentDAO {
         } catch (SQLException e) { e.printStackTrace(); }
         return out;
     }
-    // add
+
+    /** Add assessment
+     *
+     * @param a for assessment
+     */
     @Override public void add(Assessment a) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(INSERT)) {
             ps.setInt(1, a.getSubjectId());
@@ -65,14 +76,22 @@ public class SqliteAssessmentDAO implements AssessmentDAO {
             ps.executeUpdate();
         } catch (SQLException e) { e.printStackTrace(); }
     }
-    // delete assessment
+
+    /** Delete assessment
+     *
+     * @param assessmentId identify assessment in DB
+     */
     @Override public void delete(int assessmentId) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(DELETE)) {
             ps.setInt(1, assessmentId);
             ps.executeUpdate();
         } catch (SQLException e) { e.printStackTrace(); }
     }
-    // delete subject
+
+    /** Delete subject
+     *
+     * @param subjectId identify assessment in DB
+     */
     @Override public void deleteBySubject(int subjectId) {
         try (PreparedStatement ps = SqliteConnection.getInstance().prepareStatement(DELETE_BY_SUBJECT)) {
             ps.setInt(1, subjectId);

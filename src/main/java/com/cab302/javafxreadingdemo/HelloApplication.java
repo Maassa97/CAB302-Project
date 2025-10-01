@@ -8,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import atlantafx.base.theme.Dracula;
 
+/** Main JavaFX application entry point
+ * -initialise JavaFX
+ * -setup Dracula theme style sheets
+ * -load first scene (login view)
+ */
 
 public class
 HelloApplication extends Application {

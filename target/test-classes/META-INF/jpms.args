@@ -1,4 +1,0 @@
---patch-module
-com.cab302.javafxreadingdemo=_
---add-reads
-com.cab302.javafxreadingdemo=ALL-UNNAMED
