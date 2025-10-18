@@ -24,6 +24,7 @@
             <Button fx:id="addSubjectBtn" text="Add Subject" onAction="#onAddSubject"/>
             <ComboBox fx:id="subjectCombo" promptText="Select subject" prefWidth="220"/>
             <Label fx:id="subjectCountLabel" text="0/4 subjects"/>
+            <Button fx:id="deleteSubjectBtn" text="Delete Subject" onAction="#onDeleteSubject"/>
         </HBox>
 
         <!-- Assessment input row -->

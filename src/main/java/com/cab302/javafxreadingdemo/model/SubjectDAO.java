@@ -11,4 +11,5 @@ public interface SubjectDAO {
     //add
     void add(String name);
     int countAll();
+    void delete(int id);
 }

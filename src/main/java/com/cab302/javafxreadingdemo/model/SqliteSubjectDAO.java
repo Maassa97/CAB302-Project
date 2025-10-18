@@ -25,6 +25,9 @@ public class SqliteSubjectDAO implements SubjectDAO {
     private static final String COUNT_ALL =
             "SELECT COUNT(*) FROM subjects";
 
+    private static final String DELETE =
+            "DELETE FROM subjects WHERE id = ?";
+
     //validate table exists
     public SqliteSubjectDAO() {
         try (Statement st = SqliteConnection.getInstance().createStatement()) {
@@ -60,5 +63,16 @@ public class SqliteSubjectDAO implements SubjectDAO {
              ResultSet rs = ps.executeQuery()) {
             return rs.next() ? rs.getInt(1) : 0;
         } catch (SQLException e) { e.printStackTrace(); return 0; }
+    }
+
+    //delete subject
+    @Override public void delete(int id) {
+        try (PreparedStatement ps =
+                     SqliteConnection.getInstance().prepareStatement(DELETE)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

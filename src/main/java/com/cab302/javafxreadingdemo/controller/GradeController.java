@@ -47,6 +47,7 @@ public class GradeController {
     @FXML private Button addSubjectBtn;
     @FXML private ComboBox<Subject> subjectCombo;
     @FXML private Label subjectCountLabel;
+    @FXML private Button deleteSubjectBtn;
 
     //assessment control
     @FXML private TextField assessNameField;
@@ -174,6 +175,41 @@ public class GradeController {
         Subject s = subjectCombo.getValue();
         if (s != null) loadAssessments(s);
         updateChartsAll();
+    }
+
+    /** Delete selected subject + assessments */ //editted
+    @FXML
+    private void onDeleteSubject() {
+        Subject s = subjectCombo.getValue();
+        if (s == null) {
+            UiMessages.warn("Select a subject to delete.");
+            return;
+        }
+
+        // Confirm with the user
+        int assessCount = assessmentDAO.listBySubject(s.getId()).size();
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                String.format("Delete subject \"%s\"%s?",
+                        s.getName(),
+                        assessCount > 0 ? (" and its " + assessCount + " assessment(s)") : ""),
+                ButtonType.OK, ButtonType.CANCEL);
+        confirm.setHeaderText("Confirm Delete Subject");
+        confirm.showAndWait();
+        if (confirm.getResult() != ButtonType.OK) return;
+
+        // Remove assessments then the subject
+        assessmentDAO.deleteBySubject(s.getId());
+        subjectDAO.delete(s.getId());
+
+        // Refresh UI
+        refreshSubjects();
+        rows.clear();
+        if (!subjectCombo.getItems().isEmpty()) {
+            subjectCombo.getSelectionModel().selectFirst();
+            loadAssessments(subjectCombo.getValue());
+        } else {
+            recalcAll();
+        }
     }
 
     /** Navigates back to Home
