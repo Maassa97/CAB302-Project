@@ -82,5 +82,30 @@ class GradeDAOTestRealDB {
         // mutate returned list: should NOT affect DAO
         first.clear();
         assertEquals(2, dao.getAllGrades().size(), "DAO must not expose internal storage");
+
+    }
+    @Test
+    void deleteNonExistingId_noChangeToAverageOrCount() {
+        dao.addGrade(new Grade(4.0));
+        dao.addGrade(new Grade(6.0));
+        double before = dao.calculateAverage();
+        int countBefore = dao.getAllGrades().size();
+
+        dao.deleteGrade(999_999); // non-existent id
+        assertEquals(before, dao.calculateAverage(), 1e-9);
+        assertEquals(countBefore, dao.getAllGrades().size());
+    }
+
+    @Test
+    void addAndDeleteAll_averageBackToZero() {
+        dao.addGrade(new Grade(4.5));
+        dao.addGrade(new Grade(3.5));
+
+        // delete all by IDs we read back from DB
+        for (Grade g : dao.getAllGrades()) {
+            dao.deleteGrade(g.getId());
+        }
+        assertEquals(0.0, dao.calculateAverage(), 1e-9);
+        assertEquals(0, dao.getAllGrades().size());
     }
 }

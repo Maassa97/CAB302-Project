@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import com.cab302.javafxreadingdemo.ui.UiMessages;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
@@ -70,6 +71,7 @@ public class HomeController {
             stage.setTitle("Sign In");
             stage.centerOnScreen();
         } catch (Exception ex) {
+            UiMessages.error("Could not open Sign In screen.");
             ((Stage) menuButton.getScene().getWindow()).close();
         }
     }
@@ -160,7 +162,7 @@ public class HomeController {
             );
             ((Node) e.getSource()).getScene().setRoot(gradeRoot);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            UiMessages.error("Could not open Grade Calculator.");
         }
     }
 
@@ -176,7 +178,7 @@ public class HomeController {
             );
             ((Node) e.getSource()).getScene().setRoot(TodoRoot);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            UiMessages.error("Could not open Flashcards screen.");
         }
     }
 
@@ -193,7 +195,7 @@ public class HomeController {
             );
             ((Node) e.getSource()).getScene().setRoot(TodoRoot);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            UiMessages.error("Could not open To-Do screen.");
         }
     }
 

@@ -2,7 +2,7 @@ package com.cab302.javafxreadingdemo.controller;
 
 import com.cab302.javafxreadingdemo.HelloApplication;
 import com.cab302.javafxreadingdemo.model.*;
-
+import com.cab302.javafxreadingdemo.ui.UiMessages;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -50,23 +50,23 @@ public class SignupController {
 
         // Validation
         if (name.isEmpty() || email.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
-            showError("Please fill out all fields.");
+            UiMessages.warn("Please fill out all fields.");
             return;
         }
         if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
-            showError("That email doesn't look right.");
+            UiMessages.warn("That email doesn't look right.");
             return;
         }
         if (pass.length() < 8) {
-            showError("Password must be at least 8 characters.");
+            UiMessages.warn("Password must be at least 8 characters.");
             return;
         }
         if (!pass.equals(confirm)) {
-            showError("Passwords do not match.");
+            UiMessages.warn("Passwords do not match.");
             return;
         }
         if (userDAO.getUserByEmail(email) != null) {
-            showError("That email is already registered.");
+            UiMessages.warn("That email is already registered.");
             return;
         }
 
@@ -85,7 +85,7 @@ public class SignupController {
         try {
             navigate("login-view.fxml");
         } catch (IOException e) {
-            showError("Could not open login screen.");
+            UiMessages.error("Could not open login screen.");
             createButton.setDisable(false);
             createButton.setText("Create Account");
         }
@@ -99,7 +99,7 @@ public class SignupController {
         try {
             navigate("login-view.fxml");
         } catch (IOException e) {
-            showError("Could not open login screen.");
+            UiMessages.error("Could not open login screen.");
         }
     }
 

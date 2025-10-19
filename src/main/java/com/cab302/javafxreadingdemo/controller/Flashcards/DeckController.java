@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
+import com.cab302.javafxreadingdemo.ui.UiMessages;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -118,7 +119,7 @@ public class DeckController {
         //error handling
         catch (IOException e)
         {
-            errorLabel.setText("Could not Close Deck Editor.");
+            UiMessages.error("Could not close Deck Editor.");
             e.printStackTrace();
         }
     }
@@ -135,7 +136,7 @@ public class DeckController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.getScene().setRoot(homeRoot);
         } catch (IOException e) {
-            e.printStackTrace();
+            UiMessages.error("Failed to open Home screen.");
         }
     }
 }

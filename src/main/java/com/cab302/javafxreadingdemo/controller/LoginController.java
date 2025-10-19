@@ -5,6 +5,7 @@ import com.cab302.javafxreadingdemo.model.UserDAO;
 import com.cab302.javafxreadingdemo.model.SqliteUserDAO;
 import com.cab302.javafxreadingdemo.model.User;
 import com.cab302.javafxreadingdemo.badger.BadgerClient;
+import com.cab302.javafxreadingdemo.ui.UiMessages;
 
 
 import javafx.fxml.FXML;
@@ -33,7 +34,6 @@ public class LoginController {
     @FXML private TextField emailField; //email
     @FXML private PasswordField passwordField; //password
     @FXML private Button signInButton; //"Sign up"
-    @FXML private Label errorLabel; //label for errors
 
     private final BadgerClient badger = BadgerClient.fromProperties();
 
@@ -55,11 +55,11 @@ public class LoginController {
 
         // Basic validation
         if (email.isEmpty() || pass.isEmpty()) {
-            showError("Please enter both email and password.");
+            UiMessages.warn("Please enter both email and password.");;
             return;
         }
         if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
-            showError("Email format is invalid");
+            UiMessages.warn("Email format is invalid");
             return;
         }
 
@@ -69,7 +69,7 @@ public class LoginController {
 
         // Check password with BCrypt
         if (user == null || !org.mindrot.jbcrypt.BCrypt.checkpw(pass, user.getPassword())) {
-            showError("Invalid email or password.");
+            UiMessages.warn("Invalid email or password.");
             return;
         }
 
@@ -78,7 +78,6 @@ public class LoginController {
         badger.sendLoginEvent(email);
 
         // Successful login
-        errorLabel.setText("");
         signInButton.setDisable(true);
         signInButton.setText("Signing in…");
 
@@ -99,8 +98,7 @@ public class LoginController {
 
         } catch (IOException e) {
             // handle invalid FXML elements
-            e.printStackTrace();
-            showError("Could not open the home screen.");
+            UiMessages.error("Could not open the home screen.");
             signInButton.setDisable(false);
             signInButton.setText("Sign In");
         }
@@ -122,20 +120,10 @@ public class LoginController {
             Stage stage = (Stage) signInButton.getScene().getWindow();
             stage.getScene().setRoot(root);
 
-            // clear any prior error
-            errorLabel.setText("");
         } catch (IOException e) {
             // handle invalid FXML elements
-            errorLabel.setText("Could not open sign-up screen.");
-            e.printStackTrace();
+            UiMessages.error("Could not open sign-up screen.");
         }
-    }
-
-
-
-    // UI error messages
-    private void showError(String msg) {
-        errorLabel.setText(msg);
     }
 }
 

@@ -67,4 +67,16 @@ class UserTestInMemoryDAO {
         );
         assertNull(dao.getUserByEmail("not-found@example.com"));
     }
+    @Test
+    void getAll_emptyAtStart() {
+        // @BeforeEach re-creates in-memory DAO
+        assertTrue(dao.getAllUsers().isEmpty());
+    }
+
+    @Test
+    void getUserByEmail_exactMatchOnly() {
+        dao.addUser(new User("Alex", "User@Example.com", "h"));
+        assertNotNull(dao.getUserByEmail("User@Example.com"));
+        assertNull(dao.getUserByEmail("user@example.com"));
+    }
 }
